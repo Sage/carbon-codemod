@@ -1,0 +1,72 @@
+{
+  "name": "carbon-codemod",
+  "version": "1.0.0",
+  "description": "carbon-codemod",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "jscodeshift": "jscodeshift"
+  },
+  "keywords": [
+    "carbon",
+    "codemod",
+    "jscodeshift"
+  ],
+  "author": "The Sage Group plc",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "@semantic-release/changelog": "^5.0.0",
+    "@semantic-release/git": "^9.0.0",
+    "babel-jest": "^25.1.0",
+    "conventional-changelog-conventionalcommits": "^4.2.3",
+    "cz-conventional-changelog": "^3.1.0",
+    "husky": "^4.2.3",
+    "jest": "^25.1.0",
+    "lint-staged": "^10.0.8",
+    "prettier": "^1.19.1",
+    "semantic-release": "^17.0.4"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "bin": {
+    "carbon-codemod": "./bin/carbon-codemod.js"
+  },
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "commander": "^4.1.1",
+    "execa": "^4.0.0",
+    "jscodeshift": "^0.7.0"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && jest --bail",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "release": {
+    "preset": "conventionalcommits",
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/git",
+      "@semantic-release/github"
+    ]
+  }
+}

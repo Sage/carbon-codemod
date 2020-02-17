@@ -1,0 +1,7 @@
+.babelrc
+.prettierignore
+__testfixtures__
+__tests__
+.github
+.travis.yml
+.vscode
