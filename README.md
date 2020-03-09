@@ -43,9 +43,9 @@ The return value of the function determines the status of the transformation:
 
 ### Releasing
 
-- This project publishes using `semantic-release`.
-- It follows `conventional-changelog`.
+- This project publishes using [`semantic-release`](https://semantic-release.gitbook.io/semantic-release/).
+- It follows [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/).
 - When a pull request is merged to master [Travis CI](https://travis-ci.org/Sage/carbon-codemod) will run `semantic-release`.
 - `semantic-release` will decide, based on the commits that have been merged, if a new release
   is required.
-- If a new release is required, a new version will be published to npm and GitHub releases.
+- If a new release is required, a new version will be published to [npm](https://www.npmjs.com/package/carbon-codemod) and [GitHub releases](https://github.com/Sage/carbon-codemod/releases).
