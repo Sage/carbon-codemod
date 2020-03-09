@@ -12,8 +12,8 @@ function transformer(fileInfo, api, options) {
   };
 
   /*
-   `<Button type="destructive" />`
-   */
+  <Button type="destructive" />
+  */
   const LiteralReplacement = attribute => {
     if (attribute.find(j.Literal, { value: "destructive" }).size()) {
       attribute.replaceWith(
@@ -59,7 +59,7 @@ function transformer(fileInfo, api, options) {
   };
 
   /*
-   `<Button type={buttonType}/>`
+  <Button type={buttonType}/>
   */
   const JSXExpressionReplacement = attribute => {
     const IdentifierExpression = attribute.find(j.JSXExpressionContainer, {
@@ -213,7 +213,9 @@ function transformer(fileInfo, api, options) {
     });
     return didUpdate;
   };
-
+  /*
+  <Button type= />
+  */
   const JSXAttributeReplacement = button => {
     const typeAttributes = button.find(j.JSXAttribute, {
       name: {
