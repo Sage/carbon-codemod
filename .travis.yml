@@ -15,7 +15,7 @@ jobs:
       script: skip
       deploy:
         provider: script
-        script: npx semantic-release --dry
+        script: npx semantic-release
         skip_cleanup: true
         on:
           all_branches: true # semantic-release has a regex that allows us to publish maintenance releases
