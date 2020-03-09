@@ -1,24 +1,24 @@
 # button-destructive
 
-In order to add secondary and tertiary buttons to carbon-react, the `destructive` type has been replaced with a dedicated prop.
+In order to add secondary and tertiary buttons to carbon-react, the `destructive` buttonType has been replaced with a dedicated prop.
 
 ```diff
-- <Button type="destructive">My Button</Button>
-+ <Button type="primary" destructive>My Button</Button>
+- <Button buttonType="destructive">My Button</Button>
++ <Button buttonType="primary" destructive>My Button</Button>
 ```
 
 It's likely that Button has significant usage, therefore this codemod accounts for several prop patterns.
 
 ```js
-<Button type="destructive">My Button</Button>
+<Button buttonType="destructive">My Button</Button>
 ```
 
 ```js
-<Button type={"destructive"}>My Button</Button>
+<Button buttonType={"destructive"}>My Button</Button>
 ```
 
 ```js
-<Button type={buttonType}>My Button</Button>
+<Button buttonType={buttonType}>My Button</Button>
 ```
 
 ```js
@@ -26,15 +26,15 @@ It's likely that Button has significant usage, therefore this codemod accounts f
 ```
 
 ```js
-<Button {...{ type: "destructive" }}>My Button</Button>
+<Button {...{ buttonType: "destructive" }}>My Button</Button>
 ```
 
 ```js
-<Button {...{ type }}>My Button</Button>
+<Button {...{ buttonType }}>My Button</Button>
 ```
 
 ```js
-<Button {...{ type: buttonType }}>My Button</Button>
+<Button {...{ buttonType: type }}>My Button</Button>
 ```
 
 If there is a pattern that you use that is not covered here, please file a feature request.

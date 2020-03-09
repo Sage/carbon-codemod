@@ -1,7 +1,7 @@
 import Button from "carbon-react/lib/components/button";
 const buttonType = "primary";
-export default () => <Button type={buttonType} destructive />;
+export default () => <Button buttonType={buttonType} destructive />;
 export const one = (buttonType = "primary") => {
-  return <Button type={buttonType} destructive />;
+  return <Button buttonType={buttonType} destructive />;
 }
-export const two = () =>  <Button type={buttonType()} />;
+export const two = () => <Button buttonType={buttonType()} />;
