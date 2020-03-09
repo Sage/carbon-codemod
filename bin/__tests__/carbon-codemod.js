@@ -33,6 +33,7 @@ describe("run", () => {
 
   it("displays the version", () => {
     let spy = jest.spyOn(process.stdout, "write");
+    spy.mockImplementation(noop);
     process.argv = [
       "/Users/jamime/.nvm/versions/node/v10.16.3/bin/node",
       "/Users/jamime/.nvm/versions/node/v10.16.3/bin/carbon-codemod",
