@@ -1,4 +1,4 @@
-# carbon-codemod [![Travis Status](https://travis-ci.org/Sage/carbon-codemod.svg?branch=master)](https://travis-ci.org/Sage/carbon) [![npm](https://img.shields.io/npm/v/carbon-codemod.svg)](https://www.npmjs.com/package/carbon-codemod)
+# carbon-codemod [![Travis Status](https://travis-ci.org/Sage/carbon-codemod.svg?branch=master)](https://travis-ci.org/Sage/carbon-codemod) [![npm](https://img.shields.io/npm/v/carbon-codemod.svg)](https://www.npmjs.com/package/carbon-codemod)
 
 This is a collection of codemods that help you upgrade to a new version of `carbon-react`.
 The release notes of `carbon-react` will indicate which codemod you should use.
