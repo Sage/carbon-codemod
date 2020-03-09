@@ -21,6 +21,7 @@ const chalk = require("chalk");
 const fs = require("fs");
 const path = require("path");
 const Cli = require("../cli");
+const packageJSON = require("../../package.json");
 
 describe("run", () => {
   beforeAll(() => {
@@ -28,6 +29,21 @@ describe("run", () => {
   });
   afterEach(() => {
     jest.clearAllMocks();
+  });
+
+  it("displays the version", () => {
+    let spy = jest.spyOn(process.stdout, "write");
+    process.argv = [
+      "/Users/jamime/.nvm/versions/node/v10.16.3/bin/node",
+      "/Users/jamime/.nvm/versions/node/v10.16.3/bin/carbon-codemod",
+      "--version"
+    ];
+
+    new Cli().run();
+
+    expect(execaSync).not.toBeCalled();
+    expect(process.stdout.write).toBeCalledWith(`${packageJSON.version}\n`);
+    spy.mockRestore();
   });
 
   it("displays help if no arguments are passed", () => {

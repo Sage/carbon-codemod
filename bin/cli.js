@@ -3,6 +3,7 @@ const chalk = require("chalk");
 const commander = require("commander");
 const execa = require("execa");
 const jsCodeShiftBin = require.resolve(".bin/jscodeshift");
+const packageJSON = require("../package.json");
 
 const checkGitStatus = (force = false) => {
   let clean;
@@ -71,6 +72,7 @@ const runTransform = (program, transformer, target) => {
 function Cli() {
   const program = new commander.Command();
   program
+    .version(packageJSON.version)
     .option("--force", "skip safety checks")
     .option("--dry", "dry run (no changes are made to files)")
     .command("button-destructive <target>")
