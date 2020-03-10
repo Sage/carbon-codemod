@@ -1,24 +1,24 @@
 import Button from "carbon-react/lib/components/button";
 const props = {
-  type: "primary",
+  buttonType: "primary",
   destructive,
   onClick: () => {}
 };
-const type = "primary";
 const buttonType = "primary";
+const type = "primary";
 export default () => <Button {...props} />;
 export const one = () => <Button {...{
-  type: "primary",
+  buttonType: "primary",
   destructive,
   onClick: () => {}
 }} />;
 export const two = () => <Button {...{
-  type,
+  buttonType,
   destructive,
   onClick: () => {}
 }} />;
 export const three = () => <Button {...{
-  type: buttonType,
+  buttonType: type,
   destructive,
   onClick: () => {}
 }} />;

@@ -1,5 +1,5 @@
 /**
- * Convert all <Button type="destructive"/> to <Button type="primary" destructive />
+ * Convert all <Button buttonType="destructive"/> to <Button buttonType="primary" destructive />
  */
 import registerMethods from "../registerMethods";
 
@@ -12,12 +12,12 @@ function transformer(fileInfo, api, options) {
   };
 
   /*
-  <Button type="destructive" />
+  <Button buttonType="destructive" />
   */
   const LiteralReplacement = attribute => {
     if (attribute.find(j.Literal, { value: "destructive" }).size()) {
       attribute.replaceWith(
-        j.jsxAttribute(j.jsxIdentifier("type"), j.literal("primary"))
+        j.jsxAttribute(j.jsxIdentifier("buttonType"), j.literal("primary"))
       );
       addDestructiveProp(attribute);
       return true;
@@ -26,7 +26,7 @@ function transformer(fileInfo, api, options) {
 
   /*
   const buttonType = "destructive";
-  export default () => <Button type={buttonType} />;
+  export default () => <Button buttonType={buttonType} />;
   */
   const JSXExpressionVariableReplacement = IdentifierExpression => {
     const result = IdentifierExpression.findVariableDeclaration(
@@ -44,7 +44,7 @@ function transformer(fileInfo, api, options) {
 
   /*
   export const one = (buttonType = "destructive") => {
-    return <Button type={buttonType} />;
+    return <Button buttonType={buttonType} />;
   }
   */
   const JSXExpressionAssignmentReplacement = IdentifierExpression => {
@@ -59,7 +59,7 @@ function transformer(fileInfo, api, options) {
   };
 
   /*
-  <Button type={buttonType}/>
+  <Button buttonType={buttonType}/>
   */
   const JSXExpressionReplacement = attribute => {
     const IdentifierExpression = attribute.find(j.JSXExpressionContainer, {
@@ -81,18 +81,18 @@ function transformer(fileInfo, api, options) {
   };
 
   /*
-  <Button {...{{type: 'destructive'}}} />
+  <Button {...{{buttonType: 'destructive'}}} />
   */
   const ObjectExpressionsLiteralReplacement = attribute => {
     const results = attribute.find(j.Property, {
       kind: "init",
-      key: { name: "type" },
+      key: { name: "buttonType" },
       value: { value: "destructive" }
     });
 
     if (results.size()) {
       results.replaceWith(
-        j.property("init", j.identifier("type"), j.literal("primary"))
+        j.property("init", j.identifier("buttonType"), j.literal("primary"))
       );
 
       results.insertAfter(
@@ -108,13 +108,13 @@ function transformer(fileInfo, api, options) {
   };
 
   /*
-  <Button {...{type}} />
-  <Button {...{type: buttonType}} />
+  <Button {...{buttonType}} />
+  <Button {...{buttonType: buttonType}} />
   */
   const ObjectExpressionsIdentifierReplacement = argument => {
     const results = argument.find(j.Property, {
       kind: "init",
-      key: { name: "type" },
+      key: { name: "buttonType" },
       value: { type: "Identifier" }
     });
 
@@ -191,13 +191,13 @@ function transformer(fileInfo, api, options) {
 
       const results = declaration.find(j.Property, {
         kind: "init",
-        key: { name: "type" },
+        key: { name: "buttonType" },
         value: { value: "destructive" }
       });
 
       if (results.size()) {
         results.replaceWith(
-          j.property("init", j.identifier("type"), j.literal("primary"))
+          j.property("init", j.identifier("buttonType"), j.literal("primary"))
         );
 
         results.insertAfter(
@@ -214,18 +214,18 @@ function transformer(fileInfo, api, options) {
     return didUpdate;
   };
   /*
-  <Button type= />
+  <Button buttonType= />
   */
   const JSXAttributeReplacement = button => {
     const typeAttributes = button.find(j.JSXAttribute, {
       name: {
         type: "JSXIdentifier",
-        name: "type"
+        name: "buttonType"
       }
     });
 
-    // Remove all but the last type prop
-    // e.g. <Button type="primary" type="secondary" />
+    // Remove all but the last buttonType prop
+    // e.g. <Button buttonType="primary" buttonType="secondary" />
     typeAttributes.trimLeft();
 
     const attribute = typeAttributes.last();

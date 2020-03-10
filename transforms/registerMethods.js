@@ -3,6 +3,9 @@ import once from "jscodeshift/dist/utils/once";
 
 export default once(j => {
   j.registerMethods({
+    /*
+    Find the VariableDeclaration for the expressionName, optionally filtered by init value
+    */
     findVariableDeclaration: function(expressionName, init) {
       const declarationScope = this.findDeclarationScope(expressionName);
       assert.ok(
@@ -19,6 +22,7 @@ export default once(j => {
         })
         .filter(path => path.scope === declarationScope);
     },
+
     /**
      * Finds all JSXElements by package name. Given
      *
