@@ -1,3 +1,10 @@
+### [1.1.1](https://github.com/Sage/carbon-codemod/compare/v1.1.0...v1.1.1) (2020-03-10)
+
+
+### Bug Fixes
+
+* **button-destructive:** use buttonType prop instead of type ([975b4c6](https://github.com/Sage/carbon-codemod/commit/975b4c64f00385f392af9ac567ab699521574a5b))
+
 ## [1.1.0](https://github.com/Sage/carbon-codemod/compare/v1.0.0...v1.1.0) (2020-03-09)
 
 
