@@ -99,8 +99,7 @@ function transformer(fileInfo, api, options) {
         j.property.from({
           kind: "init",
           key: j.identifier("destructive"),
-          value: j.identifier("destructive"),
-          shorthand: true
+          value: j.literal(true)
         })
       );
       return true;
@@ -134,8 +133,7 @@ function transformer(fileInfo, api, options) {
           j.property.from({
             kind: "init",
             key: j.identifier("destructive"),
-            value: j.identifier("destructive"),
-            shorthand: true
+            value: j.literal(true)
           })
         );
         return true;
@@ -204,8 +202,7 @@ function transformer(fileInfo, api, options) {
           j.property.from({
             kind: "init",
             key: j.identifier("destructive"),
-            value: j.identifier("destructive"),
-            shorthand: true
+            value: j.literal(true)
           })
         );
         didUpdate = true;
