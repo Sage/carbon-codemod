@@ -1,3 +1,10 @@
+### [1.1.2](https://github.com/Sage/carbon-codemod/compare/v1.1.1...v1.1.2) (2020-03-13)
+
+
+### Bug Fixes
+
+* **button-destructive:** initialise destructive value in spread objects ([1be88bc](https://github.com/Sage/carbon-codemod/commit/1be88bcd84901d8cfcdc848b5f24064e940c1de0))
+
 ### [1.1.1](https://github.com/Sage/carbon-codemod/compare/v1.1.0...v1.1.1) (2020-03-10)
 
 
