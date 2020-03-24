@@ -74,12 +74,19 @@ function Cli() {
   program
     .version(packageJSON.version)
     .option("--force", "skip safety checks")
-    .option("--dry", "dry run (no changes are made to files)")
+    .option("--dry", "dry run (no changes are made to files)");
+
+  program
     .command("button-destructive <target>")
     .description(
       "Convert destructive buttons to primary buttons with a destructive prop"
     )
     .action(runTransform.bind(undefined, program, "button-destructive"));
+
+  program
+    .command("button-as <target>")
+    .description("Convert button as prop to buttonType")
+    .action(runTransform.bind(undefined, program, "button-as"));
 
   program.on("command:*", function() {
     console.error(

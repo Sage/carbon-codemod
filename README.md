@@ -9,7 +9,8 @@ The release notes of `carbon-react` will indicate which codemod you should use.
 npx carbon-codemod <name-of-codemod> <target>
 ```
 
-- [`button-destructive`](https://github.com/Sage/carbon-codemod/tree/master/transforms/button-destructive)
+- [`button-destructive`](./transforms/button-destructive)
+- [`button-as`](./transforms/button-as)
 
 ## Development
 
