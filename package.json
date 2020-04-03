@@ -37,7 +37,7 @@
     "carbon-codemod": "./bin/carbon-codemod.js"
   },
   "dependencies": {
-    "chalk": "^3.0.0",
+    "chalk": "^4.0.0",
     "commander": "^4.1.1",
     "execa": "^4.0.0",
     "jscodeshift": "^0.7.0"
