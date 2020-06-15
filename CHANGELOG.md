@@ -1,3 +1,10 @@
+### [1.1.3](https://github.com/Sage/carbon-codemod/compare/v1.1.2...v1.1.3) (2020-06-15)
+
+
+### Bug Fixes
+
+* audit dependencies ([bd3f393](https://github.com/Sage/carbon-codemod/commit/bd3f393019620681f84657dea3b28568b655c614))
+
 ### [1.1.2](https://github.com/Sage/carbon-codemod/compare/v1.1.1...v1.1.2) (2020-03-13)
 
 
