@@ -13,7 +13,7 @@ npx carbon-codemod <name-of-codemod> <target>
 
 ## Development
 
-`carbon-codemod` is a wrapper around [`jscodeshift`](https://github.com/facebook/jscodeshift). 
+`carbon-codemod` is a wrapper around [`jscodeshift`](https://github.com/facebook/jscodeshift).
 
 ### Running locally
 
@@ -27,6 +27,7 @@ npx carbon-codemod <name-of-codemod> <target>
 - `node --debug-brk ./bin/carbon-codemod`
 
 You can use [astexplorer.net](https://astexplorer.net/) to help understand the existing structure of files. You should use the following settings:
+
 - parser: `esprima`
 - transform: `jscodeshift`
 

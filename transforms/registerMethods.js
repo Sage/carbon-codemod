@@ -1,12 +1,12 @@
 import assert from "assert";
 import once from "jscodeshift/dist/utils/once";
 
-export default once(j => {
+export default once((j) => {
   j.registerMethods({
     /*
     Find the VariableDeclaration for the expressionName, optionally filtered by init value
     */
-    findVariableDeclaration: function(expressionName, init) {
+    findVariableDeclaration: function (expressionName, init) {
       const declarationScope = this.findDeclarationScope(expressionName);
       assert.ok(
         declarationScope,
@@ -16,11 +16,11 @@ export default once(j => {
         .find(j.VariableDeclarator, {
           id: {
             type: "Identifier",
-            name: expressionName
+            name: expressionName,
           },
-          init
+          init,
         })
-        .filter(path => path.scope === declarationScope);
+        .filter((path) => path.scope === declarationScope);
     },
 
     /**
@@ -32,23 +32,20 @@ export default once(j => {
      * findJSXElementsByImport('Foo') will find <Bar />, without having to
      * know the variable name.
      */
-    findJSXElementsByImport: function(importName) {
+    findJSXElementsByImport: function (importName) {
       assert.ok(
         importName && typeof importName === "string",
         "findJSXElementsByImport(...) needs a name to look for"
       );
 
       return this.find(j.ImportDeclaration, {
-        source: { value: importName }
+        source: { value: importName },
       })
         .find(j.ImportDefaultSpecifier)
-        .map(path => {
+        .map((path) => {
           const id = path.node.local.name;
           if (id) {
-            return j([path])
-              .closestScope()
-              .findJSXElements(id)
-              .paths();
+            return j([path]).closestScope().findJSXElements(id).paths();
           }
         });
     },
@@ -62,7 +59,7 @@ export default once(j => {
      * findJSXElementsByModuleName('foo', 'Foo') will find <Bar />, without having
      * to know the variable name.
      */
-    findJSXElementsByNamedImport: function(importName, exportName) {
+    findJSXElementsByNamedImport: function (importName, exportName) {
       assert.ok(
         importName &&
           typeof importName === "string" &&
@@ -72,16 +69,13 @@ export default once(j => {
       );
 
       return this.find(j.ImportDeclaration, {
-        source: { value: importName }
+        source: { value: importName },
       })
         .find(j.ImportSpecifier, { imported: { name: exportName } })
-        .map(path => {
+        .map((path) => {
           const id = path.node.local.name;
           if (id) {
-            return j([path])
-              .closestScope()
-              .findJSXElements(id)
-              .paths();
+            return j([path]).closestScope().findJSXElements(id).paths();
           }
         });
     },
@@ -89,14 +83,14 @@ export default once(j => {
     /*
     Get the last element in the collection
     */
-    last: function() {
+    last: function () {
       return this.at(this.size() - 1);
     },
 
     /*
      * Remove all but the last item in the collection
      */
-    trimLeft: function() {
+    trimLeft: function () {
       this.forEach((path, index) => {
         if (index + 1 < this.size()) {
           path.prune();
@@ -108,13 +102,13 @@ export default once(j => {
     Find the scope that declares a variable.
     Starts at the current scope and traverses the parent scopes.
     */
-    findDeclarationScope: function(name) {
+    findDeclarationScope: function (name) {
       let scope = this.get().scope;
       while (scope && !scope.declares(name)) {
         scope = scope.parent;
       }
       return scope;
-    }
+    },
   });
 
   j.registerMethods(
@@ -123,19 +117,19 @@ export default once(j => {
       Given a JSXExpressionContainer e.g. type={buttonType}, find the AssignmentPattern where this expression is
       defined, optionally filtered by right value.
        */
-      findAssignmentPattern: function(right) {
+      findAssignmentPattern: function (right) {
         const expressionName = this.get("expression").value.name;
         const declarationScope = this.findDeclarationScope(expressionName);
         return j(declarationScope.path)
           .find(j.AssignmentPattern, {
             left: {
               type: "Identifier",
-              name: expressionName
+              name: expressionName,
             },
-            right
+            right,
           })
-          .filter(path => path.scope === declarationScope);
-      }
+          .filter((path) => path.scope === declarationScope);
+      },
     },
     j.JSXExpressionContainer
   );

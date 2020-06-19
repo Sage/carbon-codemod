@@ -24,7 +24,7 @@ export default function defineTest(
           options,
           {
             path: inputPath,
-            source
+            source,
           },
           expectedOutput,
           testOptions
@@ -37,7 +37,7 @@ export default function defineTest(
           options,
           {
             path: outputPath,
-            source: expectedOutput
+            source: expectedOutput,
           },
           "",
           testOptions

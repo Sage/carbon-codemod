@@ -9,7 +9,7 @@ const checkGitStatus = (force = false) => {
   let clean;
   try {
     let { stdout } = execa.sync("git", ["status", "--porcelain"], {
-      stdio: ["ignore", "pipe", "ignore"]
+      stdio: ["ignore", "pipe", "ignore"],
     });
     clean = stdout.toString().trim() === "";
   } catch (e) {
@@ -57,7 +57,7 @@ const runTransform = (program, transformer, target) => {
     console.log(`jscodeshift ${args.join(" ")}`);
     const result = execa.sync(jsCodeShiftBin, args, {
       stdio: "inherit",
-      stripEof: false
+      stripEof: false,
     });
 
     if (result.error) {
@@ -81,7 +81,7 @@ function Cli() {
     )
     .action(runTransform.bind(undefined, program, "button-destructive"));
 
-  program.on("command:*", function() {
+  program.on("command:*", function () {
     console.error(
       "Invalid command: %s\nSee --help for a list of available commands.",
       program.args.join(" ")
@@ -91,7 +91,7 @@ function Cli() {
   this.__program = program;
 }
 
-Cli.prototype.run = function() {
+Cli.prototype.run = function () {
   if (process.argv.length === 2) {
     this.__program.help();
   } else {

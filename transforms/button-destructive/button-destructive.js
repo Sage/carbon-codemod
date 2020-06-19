@@ -7,14 +7,14 @@ function transformer(fileInfo, api, options) {
   const j = api.jscodeshift;
   registerMethods(j);
 
-  const addDestructiveProp = attribute => {
+  const addDestructiveProp = (attribute) => {
     attribute.insertAfter(j.jsxIdentifier("destructive"));
   };
 
   /*
   <Button buttonType="destructive" />
   */
-  const LiteralReplacement = attribute => {
+  const LiteralReplacement = (attribute) => {
     if (attribute.find(j.Literal, { value: "destructive" }).size()) {
       attribute.replaceWith(
         j.jsxAttribute(j.jsxIdentifier("buttonType"), j.literal("primary"))
@@ -28,12 +28,12 @@ function transformer(fileInfo, api, options) {
   const buttonType = "destructive";
   export default () => <Button buttonType={buttonType} />;
   */
-  const JSXExpressionVariableReplacement = IdentifierExpression => {
+  const JSXExpressionVariableReplacement = (IdentifierExpression) => {
     const result = IdentifierExpression.findVariableDeclaration(
       IdentifierExpression.get("expression").value.name,
       {
         type: "Literal",
-        value: "destructive"
+        value: "destructive",
       }
     );
     if (result.size()) {
@@ -47,10 +47,10 @@ function transformer(fileInfo, api, options) {
     return <Button buttonType={buttonType} />;
   }
   */
-  const JSXExpressionAssignmentReplacement = IdentifierExpression => {
+  const JSXExpressionAssignmentReplacement = (IdentifierExpression) => {
     const result = IdentifierExpression.findAssignmentPattern({
       type: "Literal",
-      value: "destructive"
+      value: "destructive",
     });
     if (result.size()) {
       result.get("right").replace(j.literal("primary"));
@@ -61,9 +61,9 @@ function transformer(fileInfo, api, options) {
   /*
   <Button buttonType={buttonType}/>
   */
-  const JSXExpressionReplacement = attribute => {
+  const JSXExpressionReplacement = (attribute) => {
     const IdentifierExpression = attribute.find(j.JSXExpressionContainer, {
-      expression: { type: "Identifier" }
+      expression: { type: "Identifier" },
     });
     if (IdentifierExpression.size() === 0) {
       return false;
@@ -83,11 +83,11 @@ function transformer(fileInfo, api, options) {
   /*
   <Button {...{{buttonType: 'destructive'}}} />
   */
-  const ObjectExpressionsLiteralReplacement = attribute => {
+  const ObjectExpressionsLiteralReplacement = (attribute) => {
     const results = attribute.find(j.Property, {
       kind: "init",
       key: { name: "buttonType" },
-      value: { value: "destructive" }
+      value: { value: "destructive" },
     });
 
     if (results.size()) {
@@ -99,7 +99,7 @@ function transformer(fileInfo, api, options) {
         j.property.from({
           kind: "init",
           key: j.identifier("destructive"),
-          value: j.literal(true)
+          value: j.literal(true),
         })
       );
       return true;
@@ -110,11 +110,11 @@ function transformer(fileInfo, api, options) {
   <Button {...{buttonType}} />
   <Button {...{buttonType: buttonType}} />
   */
-  const ObjectExpressionsIdentifierReplacement = argument => {
+  const ObjectExpressionsIdentifierReplacement = (argument) => {
     const results = argument.find(j.Property, {
       kind: "init",
       key: { name: "buttonType" },
-      value: { type: "Identifier" }
+      value: { type: "Identifier" },
     });
 
     if (results.size()) {
@@ -122,7 +122,7 @@ function transformer(fileInfo, api, options) {
         results.get("value").value.name,
         {
           type: "Literal",
-          value: "destructive"
+          value: "destructive",
         }
       );
 
@@ -133,7 +133,7 @@ function transformer(fileInfo, api, options) {
           j.property.from({
             kind: "init",
             key: j.identifier("destructive"),
-            value: j.literal(true)
+            value: j.literal(true),
           })
         );
         return true;
@@ -144,14 +144,14 @@ function transformer(fileInfo, api, options) {
   /*
   <Button {...{}} />
   */
-  const JSXSpreadAttributeObjectReplacement = button => {
+  const JSXSpreadAttributeObjectReplacement = (button) => {
     let didUpdate = false;
     const objectExpressions = button.find(j.JSXSpreadAttribute, {
       argument: {
-        type: "ObjectExpression"
-      }
+        type: "ObjectExpression",
+      },
     });
-    objectExpressions.forEach(path => {
+    objectExpressions.forEach((path) => {
       const attribute = j(path);
       const result =
         ObjectExpressionsLiteralReplacement(attribute) ||
@@ -164,14 +164,14 @@ function transformer(fileInfo, api, options) {
   /*
   <Button {...props} />
   */
-  const JSXSpreadAttributeIdentifierReplacement = button => {
+  const JSXSpreadAttributeIdentifierReplacement = (button) => {
     let didUpdate = false;
     const identifiers = button.find(j.JSXSpreadAttribute, {
       argument: {
-        type: "Identifier"
-      }
+        type: "Identifier",
+      },
     });
-    identifiers.forEach(path => {
+    identifiers.forEach((path) => {
       const attribute = j(path);
       const expressionName = attribute.get("argument", "name").value;
       const declarationScope = attribute.findDeclarationScope(expressionName);
@@ -179,18 +179,18 @@ function transformer(fileInfo, api, options) {
         .find(j.VariableDeclarator, {
           id: {
             type: "Identifier",
-            name: expressionName
+            name: expressionName,
           },
           init: {
-            type: "ObjectExpression"
-          }
+            type: "ObjectExpression",
+          },
         })
-        .filter(path => path.scope === declarationScope);
+        .filter((path) => path.scope === declarationScope);
 
       const results = declaration.find(j.Property, {
         kind: "init",
         key: { name: "buttonType" },
-        value: { value: "destructive" }
+        value: { value: "destructive" },
       });
 
       if (results.size()) {
@@ -202,7 +202,7 @@ function transformer(fileInfo, api, options) {
           j.property.from({
             kind: "init",
             key: j.identifier("destructive"),
-            value: j.literal(true)
+            value: j.literal(true),
           })
         );
         didUpdate = true;
@@ -213,12 +213,12 @@ function transformer(fileInfo, api, options) {
   /*
   <Button buttonType= />
   */
-  const JSXAttributeReplacement = button => {
+  const JSXAttributeReplacement = (button) => {
     const typeAttributes = button.find(j.JSXAttribute, {
       name: {
         type: "JSXIdentifier",
-        name: "buttonType"
-      }
+        name: "buttonType",
+      },
     });
 
     // Remove all but the last buttonType prop
@@ -242,7 +242,7 @@ function transformer(fileInfo, api, options) {
 
   let didUpdateFile = false;
 
-  buttons.forEach(path => {
+  buttons.forEach((path) => {
     const button = j(path);
     const didAttributeReplacement = JSXAttributeReplacement(button);
     const didSpreadAttributeReplacement = JSXSpreadAttributeIdentifierReplacement(

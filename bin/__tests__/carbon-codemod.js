@@ -1,5 +1,5 @@
 let isGitCleanResult = true;
-const execaSync = jest.fn(bin => {
+const execaSync = jest.fn((bin) => {
   if (bin === "git") {
     if (isGitCleanResult instanceof Error) {
       throw isGitCleanResult;
@@ -11,7 +11,7 @@ const execaSync = jest.fn(bin => {
 });
 
 jest.setMock("execa", {
-  sync: execaSync
+  sync: execaSync,
 });
 const noop = () => {};
 jest.spyOn(console, "log").mockImplementation(noop);
@@ -37,7 +37,7 @@ describe("run", () => {
     process.argv = [
       "/Users/jamime/.nvm/versions/node/v10.16.3/bin/node",
       "/Users/jamime/.nvm/versions/node/v10.16.3/bin/carbon-codemod",
-      "--version"
+      "--version",
     ];
 
     new Cli().run();
@@ -50,7 +50,7 @@ describe("run", () => {
   it("displays help if no arguments are passed", () => {
     process.argv = [
       "/Users/jamime/.nvm/versions/node/v10.16.3/bin/node",
-      "/Users/jamime/.nvm/versions/node/v10.16.3/bin/carbon-codemod"
+      "/Users/jamime/.nvm/versions/node/v10.16.3/bin/carbon-codemod",
     ];
 
     const cli = new Cli();
@@ -68,7 +68,7 @@ describe("run", () => {
       "/Users/jamime/.nvm/versions/node/v10.16.3/bin/carbon-codemod",
       "button-destructive",
       "src",
-      "--dry"
+      "--dry",
     ];
 
     new Cli().run();
@@ -83,7 +83,7 @@ describe("run", () => {
         "/Users/jamime/.nvm/versions/node/v10.16.3/bin/node",
         "/Users/jamime/.nvm/versions/node/v10.16.3/bin/carbon-codemod",
         "button-destructive",
-        "src"
+        "src",
       ];
     });
 
@@ -124,7 +124,7 @@ describe("run", () => {
         "/Users/jamime/.nvm/versions/node/v10.16.3/bin/carbon-codemod",
         "button-destructive",
         "src",
-        "--force"
+        "--force",
       ];
       isGitCleanResult = false;
 
@@ -158,7 +158,7 @@ describe("run", () => {
         "/Users/jamime/.nvm/versions/node/v10.16.3/bin/node",
         "/Users/jamime/.nvm/versions/node/v10.16.3/bin/carbon-codemod",
         "button-destructive",
-        "src"
+        "src",
       ];
 
       new Cli().run();
@@ -171,7 +171,7 @@ describe("run", () => {
           "button-destructive",
           "button-destructive.js"
         ),
-        path.join(process.cwd(), "src")
+        path.join(process.cwd(), "src"),
       ];
       expect(console.log).toBeCalledWith(`jscodeshift ${args.join(" ")}`);
       expect(execaSync.mock.calls[1][0]).toEqual(Cli.__jsCodeShiftBin);
