@@ -9,7 +9,10 @@ The release notes of `carbon-react` will indicate which codemod you should use.
 npx carbon-codemod <name-of-codemod> <target>
 ```
 
-- [`button-destructive`](https://github.com/Sage/carbon-codemod/tree/master/transforms/button-destructive)
+- [`button-destructive`](./transforms/button-destructive)
+- [`deprecate-create`](./transforms/deprecate-create)
+
+Note that `<target>` is worked out relative to the current working directory.
 
 ## Development
 
@@ -20,11 +23,11 @@ npx carbon-codemod <name-of-codemod> <target>
 - `npm link`
 - `cd my-other-project`
 - `npm link carbon-codemod`
-- `npx carbon-codemod`
+- `npx carbon-codemod <name-of-codemod> <target>`
 
 ### Debugging
 
-- `node --debug-brk ./bin/carbon-codemod`
+- `node --inspect-brk ./bin/carbon-codemod`
 
 You can use [astexplorer.net](https://astexplorer.net/) to help understand the existing structure of files. You should use the following settings:
 
