@@ -30,7 +30,7 @@ function transformer(fileInfo, api, options) {
     // If there's already a Button import, just remove the Create one
     if (buttonImport.size()) {
       createImport.remove();
-      return true;
+      return;
     }
 
     createImport.replaceWith(
@@ -39,40 +39,32 @@ function transformer(fileInfo, api, options) {
         j.literal("carbon-react/lib/components/button")
       )
     );
-    return true;
   };
 
   const OpeningTagReplacement = (tag) => {
     // Change the tag from Create to Button
     const name = tag.find(j.JSXIdentifier, { name: "Create" });
-    if (name.size()) {
-      // If there's already attributes, add the new ones after
-      const currentAttributes = tag.find(j.JSXAttribute);
+    // If there's already attributes, add the new ones after
+    const currentAttributes = tag.find(j.JSXAttribute);
 
-      let props = [
-        ...currentAttributes.nodes(),
-        j.jsxAttribute(j.jsxIdentifier("buttonType"), j.literal("dashed")),
-        j.jsxAttribute(j.jsxIdentifier("iconType"), j.literal("plus")),
-        j.jsxAttribute(j.jsxIdentifier("iconPosition"), j.literal("after")),
-        j.jsxAttribute(j.jsxIdentifier("fullWidth")),
-      ];
+    let props = [
+      ...currentAttributes.nodes(),
+      j.jsxAttribute(j.jsxIdentifier("buttonType"), j.literal("dashed")),
+      j.jsxAttribute(j.jsxIdentifier("iconType"), j.literal("plus")),
+      j.jsxAttribute(j.jsxIdentifier("iconPosition"), j.literal("after")),
+      j.jsxAttribute(j.jsxIdentifier("fullWidth")),
+    ];
 
-      const selfClosing = tag.nodes()[0].selfClosing;
-      tag.replaceWith(
-        j.jsxOpeningElement(j.jsxIdentifier("Button"), props, selfClosing)
-      );
-      return true;
-    }
+    const selfClosing = tag.nodes()[0].selfClosing;
+    tag.replaceWith(
+      j.jsxOpeningElement(j.jsxIdentifier("Button"), props, selfClosing)
+    );
   };
 
   const ClosingTagReplacement = (tag) => {
     // Change the tag from Create to Button
     const name = tag.find(j.JSXIdentifier, { name: "Create" });
-
-    if (name.size()) {
-      name.replaceWith(j.jsxIdentifier("Button"));
-      return true;
-    }
+    name.replaceWith(j.jsxIdentifier("Button"));
   };
 
   const JSXElementReplacement = (create) => {
@@ -92,14 +84,12 @@ function transformer(fileInfo, api, options) {
       },
     });
 
-    let tagsReplaced = OpeningTagReplacement(createOpeningTags.last());
+    OpeningTagReplacement(createOpeningTags.last());
 
     if (createClosingTags.size()) {
       const closingTag = createClosingTags.last();
-      tagsReplaced = tagsReplaced && ClosingTagReplacement(closingTag);
+      ClosingTagReplacement(closingTag);
     }
-
-    return tagsReplaced;
   };
 
   const root = j(fileInfo.source);
@@ -113,20 +103,13 @@ function transformer(fileInfo, api, options) {
     return;
   }
 
-  let didUpdateFile = false;
-
   creates.forEach((path) => {
     const create = j(path);
-    const didImportReplacement = ImportReplacement();
-    const didElementReplacement = JSXElementReplacement(create);
-
-    let didConvertCreate = didImportReplacement && didElementReplacement;
-    didUpdateFile = didUpdateFile ? true : didConvertCreate;
+    ImportReplacement();
+    JSXElementReplacement(create);
   });
 
-  if (didUpdateFile) {
-    return root.toSource();
-  }
+  return root.toSource();
 }
 
 module.exports = transformer;
