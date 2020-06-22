@@ -1,3 +1,10 @@
+## [1.2.0](https://github.com/Sage/carbon-codemod/compare/v1.1.3...v1.2.0) (2020-06-22)
+
+
+### Features
+
+* add deprecate-create transformation ([87cc903](https://github.com/Sage/carbon-codemod/commit/87cc9031724c889fe10422c46b394afbdad3daaf))
+
 ### [1.1.3](https://github.com/Sage/carbon-codemod/compare/v1.1.2...v1.1.3) (2020-06-15)
 
 ### Bug Fixes
