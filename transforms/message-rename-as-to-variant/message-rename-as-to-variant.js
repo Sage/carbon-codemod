@@ -1,9 +1,8 @@
 /*
  * Convert all <Message as="" /> <Message variant="" />
  */
-import renameAttribute from "../renameAttribute";
-module.exports = renameAttribute(
-  "carbon-react/lib/components/message",
-  "as",
-  "variant"
+import { run, renameAttribute } from "../builder";
+module.exports = run(
+  renameAttribute("carbon-react/lib/components/message", "as", "variant"),
+  renameAttribute("carbon-react/lib/components/message", "foo", "bar")
 );
