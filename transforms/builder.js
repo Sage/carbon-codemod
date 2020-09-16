@@ -31,8 +31,6 @@ const renameAttribute = (path, old, replacement) => (
   j,
   root
 ) => {
-  let didReplacement = false;
-
   /*
    * <Component prop="" />
    */
@@ -170,15 +168,19 @@ const renameAttribute = (path, old, replacement) => (
     return;
   }
 
-  messages.forEach((path) => {
+  return messages.paths().reduce((didReplacement, path) => {
     const message = j(path);
-    didReplacement =
-      JSXAttributeReplacement(message) ||
-      JSXSpreadAttributeIdentifierReplacement(message) ||
-      JSXSpreadAttributeObjectReplacement(message);
-  });
+    // Ensure that we run all possible combinations in case an attribute is defined more than once
+    const result = [
+      JSXAttributeReplacement(message),
+      JSXSpreadAttributeIdentifierReplacement(message),
+      JSXSpreadAttributeObjectReplacement(message),
+    ].reduce((acc, cur) => {
+      return acc || cur;
+    }, false);
 
-  return didReplacement;
+    return didReplacement || result;
+  }, false);
 };
 
 const removeAttribute = (path, attribute) => renameAttribute(path, attribute);

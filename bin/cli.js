@@ -89,17 +89,10 @@ function Cli() {
     .action(runTransform.bind(undefined, program, "deprecate-create"));
 
   program
-    .command("message-rename-as-to-variant <target>")
-    .description("Replace message component as prop with variant prop")
+    .command("message-remove-classic-theme <target>")
+    .description("Remove classic theme props from the message component")
     .action(
-      runTransform.bind(undefined, program, "message-rename-as-to-variant")
-    );
-
-  program
-    .command("message-remove-rounded-corners <target>")
-    .description("Remove message component roundedCorners prop")
-    .action(
-      runTransform.bind(undefined, program, "message-remove-rounded-corners")
+      runTransform.bind(undefined, program, "message-remove-classic-theme")
     );
 
   program.on("command:*", function () {

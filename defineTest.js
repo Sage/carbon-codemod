@@ -9,6 +9,9 @@ export default function defineTest(
   testFilePrefix,
   testOptions
 ) {
+  testFilePrefix = Array.isArray(testFilePrefix)
+    ? path.join(...testFilePrefix)
+    : testFilePrefix;
   const fixtureDir = path.join(dirName, "..", "__testfixtures__");
   const inputPath = path.join(fixtureDir, testFilePrefix + `.input.js`);
   const outputPath = path.join(fixtureDir, testFilePrefix + `.output.js`);
