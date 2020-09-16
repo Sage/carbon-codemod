@@ -95,6 +95,13 @@ function Cli() {
       runTransform.bind(undefined, program, "message-rename-as-to-variant")
     );
 
+  program
+    .command("message-remove-rounded-corners <target>")
+    .description("Remove message component roundedCorners prop")
+    .action(
+      runTransform.bind(undefined, program, "message-remove-rounded-corners")
+    );
+
   program.on("command:*", function () {
     console.error(
       "Invalid command: %s\nSee --help for a list of available commands.",

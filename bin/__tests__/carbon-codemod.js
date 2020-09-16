@@ -227,5 +227,30 @@ describe("run", () => {
       expect(execaSync.mock.calls[1][0]).toEqual(Cli.__jsCodeShiftBin);
       expect(execaSync.mock.calls[1][1]).toEqual(args);
     });
+
+    it("runs message-remove-rounded-corners", () => {
+      process.argv = [
+        "/Users/jamime/.nvm/versions/node/v10.16.3/bin/node",
+        "/Users/jamime/.nvm/versions/node/v10.16.3/bin/carbon-codemod",
+        "message-remove-rounded-corners",
+        "src",
+      ];
+
+      new Cli().run();
+      const args = [
+        "--verbose=2",
+        "--ignore-pattern=**/node_modules/**",
+        "--transform",
+        path.join(
+          Cli.__transformsDir,
+          "message-remove-rounded-corners",
+          "message-remove-rounded-corners.js"
+        ),
+        path.join(process.cwd(), "src"),
+      ];
+      expect(console.log).toBeCalledWith(`jscodeshift ${args.join(" ")}`);
+      expect(execaSync.mock.calls[1][0]).toEqual(Cli.__jsCodeShiftBin);
+      expect(execaSync.mock.calls[1][1]).toEqual(args);
+    });
   });
 });

@@ -6,7 +6,7 @@ import registerMethods from "./registerMethods";
  * @param {string} old prop name to replace
  * @param {string} replacement new prop name
  */
-module.exports = (path, old, replacement) => {
+module.exports = (path, old, replacement = false) => {
   return function transformer(fileInfo, api, options) {
     let didReplacement = false;
     const j = api.jscodeshift;
@@ -24,10 +24,16 @@ module.exports = (path, old, replacement) => {
         },
       });
 
-      attributes.forEach((nodePath) => {
-        nodePath.node.name = replacement;
+      if (replacement) {
+        attributes.forEach((nodePath) => {
+          nodePath.node.name = replacement;
+          didReplacement = true;
+        });
+      } else if (attributes.size()) {
+        attributes.remove();
         didReplacement = true;
-      });
+      }
+
       return didReplacement;
     };
 
@@ -43,7 +49,11 @@ module.exports = (path, old, replacement) => {
       });
 
       if (results.size()) {
-        results.get("key").replace(j.identifier(replacement));
+        if (replacement) {
+          results.get("key").replace(j.identifier(replacement));
+        } else {
+          results.remove();
+        }
         return true;
       }
     };
@@ -59,8 +69,12 @@ module.exports = (path, old, replacement) => {
       });
 
       if (results.size()) {
-        results.get("key").replace(j.identifier(replacement));
-        results.get().node.shorthand = false;
+        if (replacement) {
+          results.get("key").replace(j.identifier(replacement));
+          results.get().node.shorthand = false;
+        } else {
+          results.remove();
+        }
         return true;
       }
     };
@@ -117,7 +131,11 @@ module.exports = (path, old, replacement) => {
         });
 
         if (results.size()) {
-          results.get("key").replace(j.identifier(replacement));
+          if (replacement) {
+            results.get("key").replace(j.identifier(replacement));
+          } else {
+            results.remove();
+          }
           didUpdate = true;
         }
       });
