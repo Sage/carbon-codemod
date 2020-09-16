@@ -88,6 +88,13 @@ function Cli() {
     .description("Convert create to dashed fullwidth button")
     .action(runTransform.bind(undefined, program, "deprecate-create"));
 
+  program
+    .command("message-rename-as-to-variant <target>")
+    .description("Replace message component as prop with variant prop")
+    .action(
+      runTransform.bind(undefined, program, "message-rename-as-to-variant")
+    );
+
   program.on("command:*", function () {
     console.error(
       "Invalid command: %s\nSee --help for a list of available commands.",
