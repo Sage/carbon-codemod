@@ -1,7 +1,7 @@
 import registerMethods from "./registerMethods";
 
 const run = (...transformers) => {
-  return function transformer(fileInfo, api, options) {
+  return function rootTransformer(fileInfo, api, options) {
     let didReplacement = false;
     const j = api.jscodeshift;
     registerMethods(j);
@@ -132,6 +132,9 @@ const renameAttribute = (path, old, replacement) => (
       const attribute = j(path);
       const expressionName = attribute.get("argument", "name").value;
       const declarationScope = attribute.findDeclarationScope(expressionName);
+      if (!declarationScope) {
+        return;
+      }
       const declaration = j(declarationScope.path)
         .find(j.VariableDeclarator, {
           id: {

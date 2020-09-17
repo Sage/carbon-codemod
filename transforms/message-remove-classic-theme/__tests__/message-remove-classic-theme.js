@@ -18,3 +18,4 @@ defineTest(__dirname, "message-remove-classic-theme", null, [
 ]);
 defineTest(__dirname, "message-remove-classic-theme", null, "NoImport");
 defineTest(__dirname, "message-remove-classic-theme", null, "Basic");
+defineTest(__dirname, "message-remove-classic-theme", null, "Bug");

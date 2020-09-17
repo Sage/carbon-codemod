@@ -1,3 +1,3 @@
 // Wrong Import
-import Create from "carbon-react/lib/components/NotCreate";
-export default () => <Create />;
+import Message from "carbon-react/lib/components/NotMessage";
+export default () => <Message />;

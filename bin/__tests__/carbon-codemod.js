@@ -13,7 +13,7 @@ const execaSync = jest.fn((bin) => {
 jest.setMock("execa", {
   sync: execaSync,
 });
-const noop = () => {};
+const noop = () => { };
 jest.spyOn(console, "log").mockImplementation(noop);
 jest.spyOn(process, "exit").mockImplementation(noop);
 
@@ -35,8 +35,8 @@ describe("run", () => {
     let spy = jest.spyOn(process.stdout, "write");
     spy.mockImplementation(noop);
     process.argv = [
-      "/Users/jamime/.nvm/versions/node/v10.16.3/bin/node",
-      "/Users/jamime/.nvm/versions/node/v10.16.3/bin/carbon-codemod",
+      "/Users/guest/.nvm/versions/node/v10.16.3/bin/node",
+      "/Users/guest/.nvm/versions/node/v10.16.3/bin/carbon-codemod",
       "--version",
     ];
 
@@ -49,8 +49,8 @@ describe("run", () => {
 
   it("displays help if no arguments are passed", () => {
     process.argv = [
-      "/Users/jamime/.nvm/versions/node/v10.16.3/bin/node",
-      "/Users/jamime/.nvm/versions/node/v10.16.3/bin/carbon-codemod",
+      "/Users/guest/.nvm/versions/node/v10.16.3/bin/node",
+      "/Users/guest/.nvm/versions/node/v10.16.3/bin/carbon-codemod",
     ];
 
     const cli = new Cli();
@@ -64,8 +64,8 @@ describe("run", () => {
 
   it("forwards the --dry flag", () => {
     process.argv = [
-      "/Users/jamime/.nvm/versions/node/v10.16.3/bin/node",
-      "/Users/jamime/.nvm/versions/node/v10.16.3/bin/carbon-codemod",
+      "/Users/guest/.nvm/versions/node/v10.16.3/bin/node",
+      "/Users/guest/.nvm/versions/node/v10.16.3/bin/carbon-codemod",
       "button-destructive",
       "src",
       "--dry",
@@ -80,8 +80,8 @@ describe("run", () => {
   describe("git", () => {
     beforeEach(() => {
       process.argv = [
-        "/Users/jamime/.nvm/versions/node/v10.16.3/bin/node",
-        "/Users/jamime/.nvm/versions/node/v10.16.3/bin/carbon-codemod",
+        "/Users/guest/.nvm/versions/node/v10.16.3/bin/node",
+        "/Users/guest/.nvm/versions/node/v10.16.3/bin/carbon-codemod",
         "button-destructive",
         "src",
       ];
@@ -120,8 +120,8 @@ describe("run", () => {
 
     it("runs when git repo is dirty and forced", () => {
       process.argv = [
-        "/Users/jamime/.nvm/versions/node/v10.16.3/bin/node",
-        "/Users/jamime/.nvm/versions/node/v10.16.3/bin/carbon-codemod",
+        "/Users/guest/.nvm/versions/node/v10.16.3/bin/node",
+        "/Users/guest/.nvm/versions/node/v10.16.3/bin/carbon-codemod",
         "button-destructive",
         "src",
         "--force",
@@ -155,8 +155,8 @@ describe("run", () => {
 
     it("runs button-destructive", () => {
       process.argv = [
-        "/Users/jamime/.nvm/versions/node/v10.16.3/bin/node",
-        "/Users/jamime/.nvm/versions/node/v10.16.3/bin/carbon-codemod",
+        "/Users/guest/.nvm/versions/node/v10.16.3/bin/node",
+        "/Users/guest/.nvm/versions/node/v10.16.3/bin/carbon-codemod",
         "button-destructive",
         "src",
       ];
@@ -180,8 +180,8 @@ describe("run", () => {
 
     it("runs deprecate-create", () => {
       process.argv = [
-        "/Users/jamime/.nvm/versions/node/v10.16.3/bin/node",
-        "/Users/jamime/.nvm/versions/node/v10.16.3/bin/carbon-codemod",
+        "/Users/guest/.nvm/versions/node/v10.16.3/bin/node",
+        "/Users/guest/.nvm/versions/node/v10.16.3/bin/carbon-codemod",
         "deprecate-create",
         "src",
       ];
@@ -205,8 +205,8 @@ describe("run", () => {
 
     it("runs message-remove-classic-theme", () => {
       process.argv = [
-        "/Users/jamime/.nvm/versions/node/v10.16.3/bin/node",
-        "/Users/jamime/.nvm/versions/node/v10.16.3/bin/carbon-codemod",
+        "/Users/guest/.nvm/versions/node/v10.16.3/bin/node",
+        "/Users/guest/.nvm/versions/node/v10.16.3/bin/carbon-codemod",
         "message-remove-classic-theme",
         "src",
       ];
