@@ -1,3 +1,16 @@
+## [1.3.0](https://github.com/Sage/carbon-codemod/compare/v1.2.0...v1.3.0) (2020-09-21)
+
+
+### Features
+
+* **message:** remove roundedCorners prop ([f39b06e](https://github.com/Sage/carbon-codemod/commit/f39b06edb2bc34629c8de0beafeff680263159db))
+* **message:** rename as prop to variant ([0e8438f](https://github.com/Sage/carbon-codemod/commit/0e8438f139e82ee37ac8887dfeff828302bf0a9c))
+
+
+### Bug Fixes
+
+* **message:** transform destructured props ([3ae74ee](https://github.com/Sage/carbon-codemod/commit/3ae74ee8ea6246bb6464a92baf6dac803f78b38a))
+
 ## [1.2.0](https://github.com/Sage/carbon-codemod/compare/v1.1.3...v1.2.0) (2020-06-22)
 
 
