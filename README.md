@@ -11,6 +11,7 @@ npx carbon-codemod <name-of-codemod> <target>
 
 - [`button-destructive`](./transforms/button-destructive)
 - [`deprecate-create`](./transforms/deprecate-create)
+- [`message-remove-classic-theme`](./transforms/message-remove-classic-theme)
 
 Note that `<target>` is worked out relative to the current working directory.
 

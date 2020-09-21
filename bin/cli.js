@@ -88,6 +88,13 @@ function Cli() {
     .description("Convert create to dashed fullwidth button")
     .action(runTransform.bind(undefined, program, "deprecate-create"));
 
+  program
+    .command("message-remove-classic-theme <target>")
+    .description("Remove classic theme props from the message component")
+    .action(
+      runTransform.bind(undefined, program, "message-remove-classic-theme")
+    );
+
   program.on("command:*", function () {
     console.error(
       "Invalid command: %s\nSee --help for a list of available commands.",
