@@ -13,7 +13,7 @@ const execaSync = jest.fn((bin) => {
 jest.setMock("execa", {
   sync: execaSync,
 });
-const noop = () => { };
+const noop = () => {};
 jest.spyOn(console, "log").mockImplementation(noop);
 jest.spyOn(process, "exit").mockImplementation(noop);
 
@@ -222,6 +222,58 @@ describe("run", () => {
           "message-remove-classic-theme.js"
         ),
         path.join(process.cwd(), "src"),
+      ];
+      expect(console.log).toBeCalledWith(`jscodeshift ${args.join(" ")}`);
+      expect(execaSync.mock.calls[1][0]).toEqual(Cli.__jsCodeShiftBin);
+      expect(execaSync.mock.calls[1][1]).toEqual(args);
+    });
+
+    it("runs rename-prop", () => {
+      process.argv = [
+        "/Users/guest/.nvm/versions/node/v10.16.3/bin/node",
+        "/Users/guest/.nvm/versions/node/v10.16.3/bin/carbon-codemod",
+        "rename-prop",
+        "src",
+        "carbon-react/lib/components/button",
+        "buttonType",
+        "variant",
+      ];
+
+      new Cli().run();
+      const args = [
+        "--verbose=2",
+        "--ignore-pattern=**/node_modules/**",
+        "--transform",
+        path.join(Cli.__transformsDir, "rename-prop", "rename-prop.js"),
+        path.join(process.cwd(), "src"),
+        "--component=carbon-react/lib/components/button",
+        "--old=buttonType",
+        "--replacement=variant",
+      ];
+      expect(console.log).toBeCalledWith(`jscodeshift ${args.join(" ")}`);
+      expect(execaSync.mock.calls[1][0]).toEqual(Cli.__jsCodeShiftBin);
+      expect(execaSync.mock.calls[1][1]).toEqual(args);
+    });
+
+    it("runs remove-prop", () => {
+      process.argv = [
+        "/Users/guest/.nvm/versions/node/v10.16.3/bin/node",
+        "/Users/guest/.nvm/versions/node/v10.16.3/bin/carbon-codemod",
+        "remove-prop",
+        "src",
+        "carbon-react/lib/components/button",
+        "buttonType",
+      ];
+
+      new Cli().run();
+      const args = [
+        "--verbose=2",
+        "--ignore-pattern=**/node_modules/**",
+        "--transform",
+        path.join(Cli.__transformsDir, "remove-prop", "remove-prop.js"),
+        path.join(process.cwd(), "src"),
+        "--component=carbon-react/lib/components/button",
+        "--prop=buttonType",
       ];
       expect(console.log).toBeCalledWith(`jscodeshift ${args.join(" ")}`);
       expect(execaSync.mock.calls[1][0]).toEqual(Cli.__jsCodeShiftBin);
