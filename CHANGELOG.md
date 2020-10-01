@@ -1,3 +1,10 @@
+## [1.4.0](https://github.com/Sage/carbon-codemod/compare/v1.3.0...v1.4.0) (2020-10-01)
+
+
+### Features
+
+* add universal replace-prop and remove-prop codemods ([c2c9fc8](https://github.com/Sage/carbon-codemod/commit/c2c9fc88d2110d5051892799a87c120ec4e3d850))
+
 ## [1.3.0](https://github.com/Sage/carbon-codemod/compare/v1.2.0...v1.3.0) (2020-09-21)
 
 
