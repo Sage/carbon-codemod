@@ -36,9 +36,12 @@ const checkGitStatus = (force = false) => {
 };
 
 const transformsDir = path.resolve(__dirname, "../", "transforms");
-const runTransform = (program, transformer, target) => {
+
+const runTransform = (target, command, program, options = {}) => {
   try {
     const { force, dry } = program.opts();
+    const name = command.name();
+
     if (!dry) {
       checkGitStatus(force);
     }
@@ -47,12 +50,22 @@ const runTransform = (program, transformer, target) => {
     if (dry) {
       args.push("--dry");
     }
-    args.push(
-      "--transform",
-      path.join(transformsDir, transformer, `${transformer}.js`)
-    );
+    args.push("--transform", path.join(transformsDir, name, `${name}.js`));
 
     args.push(path.resolve(process.cwd(), target));
+
+    Object.keys(options).forEach((key) => {
+      const type = typeof options[key];
+
+      if (type === "string") {
+        args.push(`--${key}=${options[key]}`);
+      } else {
+        console.error(
+          `Unable to use argument ${key}, ${type} arguments are not supported yet.`
+        );
+        process.exit(1);
+      }
+    });
 
     console.log(`jscodeshift ${args.join(" ")}`);
     const result = execa.sync(jsCodeShiftBin, args, {
@@ -81,18 +94,57 @@ function Cli() {
     .description(
       "Convert destructive buttons to primary buttons with a destructive prop"
     )
-    .action(runTransform.bind(undefined, program, "button-destructive"));
+    .action((target, command) => runTransform(target, command, program));
 
   program
     .command("deprecate-create <target>")
     .description("Convert create to dashed fullwidth button")
-    .action(runTransform.bind(undefined, program, "deprecate-create"));
+    .action((target, command) => runTransform(target, command, program));
 
   program
     .command("message-remove-classic-theme <target>")
     .description("Remove classic theme props from the message component")
-    .action(
-      runTransform.bind(undefined, program, "message-remove-classic-theme")
+    .action((target, command) => runTransform(target, command, program));
+
+  program
+    .command("rename-prop <target> <component> <old> <replacement>")
+    .description(
+      `
+Codemod used for prop renaming
+Usage
+  npx carbon-codemod rename-prop <target> <component> <old> <replacement>
+
+  target       Files or directory to transform
+  component    Import path of component which prop should be renamed
+  old          Old prop name
+  replacement  New prop name
+
+Example
+  npx carbon-codemod rename-prop src carbon-react/lib/components/component oldProp newProp
+    `
+    )
+    .action((target, component, old, replacement, command) =>
+      runTransform(target, command, program, { component, old, replacement })
+    );
+
+  program
+    .command("remove-prop <target> <component> <prop>")
+    .description(
+      `
+Codemod used for prop removal
+Usage
+  npx carbon-codemod remove-prop <target> <component> <prop>
+
+  target       Files or directory to transform
+  component    Import path of component which prop should be removed
+  prop         Prop to be removed
+
+Example
+  npx carbon-codemod remove-prop src carbon-react/lib/components/component prop
+    `
+    )
+    .action((target, component, prop, command) =>
+      runTransform(target, command, program, { component, prop })
     );
 
   program.on("command:*", function () {
