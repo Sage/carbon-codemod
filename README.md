@@ -16,6 +16,7 @@ npx carbon-codemod <name-of-codemod> <target>
 - [`remove-prop`](./transforms/remove-prop)
 - [`replace-prop-value`](./transforms/replace-prop-value)
 - [`tile-update-padding-prop`](./transforms/tile-update-padding-prop)
+- [`dialog-full-screen-app-wrapper`](./transforms/dialog-full-screen-app-wrapper)
 
 Note that `<target>` is worked out relative to the current working directory.
 
