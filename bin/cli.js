@@ -107,6 +107,13 @@ function Cli() {
     .action((target, command) => runTransform(target, command, program));
 
   program
+    .command("tile-update-padding-prop <target>")
+    .description(
+      "Replace padding prop with p prop and change values on tile component"
+    )
+    .action((target, command) => runTransform(target, command, program));
+
+  program
     .command("rename-prop <target> <component> <old> <replacement>")
     .description(
       `
@@ -145,6 +152,35 @@ Example
     )
     .action((target, component, prop, command) =>
       runTransform(target, command, program, { component, prop })
+    );
+
+  program
+    .command(
+      "replace-prop-value <target> <component> <prop> <oldValue> <newValue>"
+    )
+    .description(
+      `
+Codemod used for prop value changing
+Usage
+  npx carbon-codemod replace-prop-value <target> <component> <prop> <oldValue> <newValue>
+
+  target       Files or directory to transform
+  component    Import path of component which prop should be renamed
+  prop         Prop name
+  oldValue     Prop value to change
+  newValue     Value to change prop to
+
+Example
+  npx carbon-codemod replace-prop-value src carbon-react/lib/components/component prop oldValue newValue
+    `
+    )
+    .action((target, component, attribute, oldValue, newValue, command) =>
+      runTransform(target, command, program, {
+        component,
+        attribute,
+        oldValue,
+        newValue,
+      })
     );
 
   program.on("command:*", function () {

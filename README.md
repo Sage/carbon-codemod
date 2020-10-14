@@ -14,6 +14,8 @@ npx carbon-codemod <name-of-codemod> <target>
 - [`message-remove-classic-theme`](./transforms/message-remove-classic-theme)
 - [`rename-prop`](./transforms/rename-prop)
 - [`remove-prop`](./transforms/remove-prop)
+- [`replace-prop-value`](./transforms/replace-prop-value)
+- [`tile-update-padding-prop`](./transforms/tile-update-padding-prop)
 
 Note that `<target>` is worked out relative to the current working directory.
 
