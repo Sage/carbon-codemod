@@ -1,3 +1,10 @@
+## [1.5.0](https://github.com/Sage/carbon-codemod/compare/v1.4.0...v1.5.0) (2020-10-14)
+
+
+### Features
+
+* new replace prop value and tile padding mods ([101169d](https://github.com/Sage/carbon-codemod/commit/101169d174b0be26300a95118b546b78511591d5))
+
 ## [1.4.0](https://github.com/Sage/carbon-codemod/compare/v1.3.0...v1.4.0) (2020-10-01)
 
 
