@@ -102,6 +102,11 @@ function Cli() {
     .action((target, command) => runTransform(target, command, program));
 
   program
+    .command("dialog-full-screen-app-wrapper <target>")
+    .description("Wrap children of DialogFullScreen in AppWrapper")
+    .action((target, command) => runTransform(target, command, program));
+
+  program
     .command("message-remove-classic-theme <target>")
     .description("Remove classic theme props from the message component")
     .action((target, command) => runTransform(target, command, program));
