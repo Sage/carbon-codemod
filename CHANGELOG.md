@@ -1,3 +1,10 @@
+## [1.6.0](https://github.com/Sage/carbon-codemod/compare/v1.5.0...v1.6.0) (2020-10-16)
+
+
+### Features
+
+* **dialog-full-screen:** add appwrapper to wrap children ([eaa2cc8](https://github.com/Sage/carbon-codemod/commit/eaa2cc8ad135867d30477c603ddedd32893200ca))
+
 ## [1.5.0](https://github.com/Sage/carbon-codemod/compare/v1.4.0...v1.5.0) (2020-10-14)
 
 
