@@ -2,9 +2,11 @@ import finder from "./finder";
 
 const renameAttribute = (path, attribute, replacement) =>
   finder(path, attribute, {
-    JSXAttributeReplacement: (attributes) => {
+    JSXAttributeReplacement: (attributes, j) => {
       attributes.forEach((nodePath) => {
-        nodePath.node.name = replacement;
+        j(nodePath)
+          .find(j.JSXIdentifier)
+          .replaceWith(j.jsxIdentifier(replacement));
       });
       return true;
     },
