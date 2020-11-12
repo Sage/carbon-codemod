@@ -1,3 +1,10 @@
+### [1.6.1](https://github.com/Sage/carbon-codemod/compare/v1.6.0...v1.6.1) (2020-11-12)
+
+
+### Bug Fixes
+
+* **message:** remove border prop ([53f32ad](https://github.com/Sage/carbon-codemod/commit/53f32ad3e7aef07d3f76cc8c26edd4e61f0d42ad))
+
 ## [1.6.0](https://github.com/Sage/carbon-codemod/compare/v1.5.0...v1.6.0) (2020-10-16)
 
 
