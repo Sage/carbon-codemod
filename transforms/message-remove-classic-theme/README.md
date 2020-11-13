@@ -5,7 +5,7 @@ In order to simplify the `Message` api in carbon-react
 * the `roundedCorners` prop has been removed
 
 ```diff
-- <Message as="info" roundedCorners>My Message</Message>
+- <Message as="info" roundedCorners border={false}>My Message</Message>
 + <Message variant="info">My Message</Message>
 ```
 
