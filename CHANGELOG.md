@@ -1,3 +1,10 @@
+## [1.7.0](https://github.com/Sage/carbon-codemod/compare/v1.6.1...v1.7.0) (2020-11-13)
+
+
+### Features
+
+* add codemod to replace flash with toast ([2d13cc8](https://github.com/Sage/carbon-codemod/commit/2d13cc8fa6ce1a9fb72622713aeb781f8d6fa1a1))
+
 ### [1.6.1](https://github.com/Sage/carbon-codemod/compare/v1.6.0...v1.6.1) (2020-11-12)
 
 

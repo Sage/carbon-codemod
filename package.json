@@ -1,6 +1,6 @@
 {
   "name": "carbon-codemod",
-  "version": "1.6.1",
+  "version": "1.7.0",
   "description": "carbon-codemod",
   "main": "index.js",
   "scripts": {
