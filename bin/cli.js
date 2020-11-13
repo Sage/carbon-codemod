@@ -112,6 +112,11 @@ function Cli() {
     .action((target, command) => runTransform(target, command, program));
 
   program
+    .command("replace-flash-with-toast <target>")
+    .description("Replaces deprecated Flash component with Toast component")
+    .action((target, command) => runTransform(target, command, program));
+
+  program
     .command("tile-update-padding-prop <target>")
     .description(
       "Replace padding prop with p prop and change values on tile component"

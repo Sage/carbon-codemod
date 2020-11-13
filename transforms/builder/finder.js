@@ -4,6 +4,49 @@
  * @param {string} prop prop name to operate on
  * @param {string} replacement new prop name
  */
+
+/*
+ * <Component prop="" />
+ */
+export const findJSXAttribute = (j, component, prop) =>
+  component.find(j.JSXAttribute, {
+    name: {
+      type: "JSXIdentifier",
+      name: prop,
+    },
+  });
+
+/*
+ * <Component {...{prop: 'info'}} />
+ * <Component {...{prop: prop}} />
+ */
+export const findObjectExpressionsLiteral = (j, attribute, prop) =>
+  attribute.find(j.Property, {
+    kind: "init",
+    key: { name: prop },
+    shorthand: false,
+  });
+
+/*
+ * <Component {...{prop}} />
+ */
+export const findObjectExpressionsIdentifier = (j, argument, prop) =>
+  argument.find(j.Property, {
+    kind: "init",
+    key: { name: prop },
+    shorthand: true,
+  });
+
+/*
+ *   <Component {...{}} />
+ */
+export const findJSXSpreadAttributeObject = (j, component) =>
+  component.find(j.JSXSpreadAttribute, {
+    argument: {
+      type: "ObjectExpression",
+    },
+  });
+
 const finder = (
   path,
   prop,
@@ -18,12 +61,7 @@ const finder = (
    * <Component prop="" />
    */
   const JSXAttributeReplacement = (component) => {
-    const attributes = component.find(j.JSXAttribute, {
-      name: {
-        type: "JSXIdentifier",
-        name: prop,
-      },
-    });
+    const attributes = findJSXAttribute(j, component, prop);
 
     if (attributes.size()) {
       return JSXAttributeReplacementFn(attributes, j);
@@ -35,11 +73,7 @@ const finder = (
    * <Component {...{prop: prop}} />
    */
   const ObjectExpressionsLiteralReplacement = (attribute) => {
-    const results = attribute.find(j.Property, {
-      kind: "init",
-      key: { name: prop },
-      shorthand: false,
-    });
+    const results = findObjectExpressionsLiteral(j, attribute, prop);
 
     if (results.size()) {
       return ObjectExpressionsLiteralReplacementFn(results, j);
@@ -50,11 +84,7 @@ const finder = (
    * <Component {...{prop}} />
    */
   const ObjectExpressionsIdentifierReplacement = (argument) => {
-    const results = argument.find(j.Property, {
-      kind: "init",
-      key: { name: prop },
-      shorthand: true,
-    });
+    const results = findObjectExpressionsIdentifier(j, argument, prop);
 
     if (results.size()) {
       return ObjectExpressionsIdentifierReplacementFn(results, j);
@@ -66,11 +96,9 @@ const finder = (
   */
   const JSXSpreadAttributeObjectReplacement = (component) => {
     let didUpdate = false;
-    const objectExpressions = component.find(j.JSXSpreadAttribute, {
-      argument: {
-        type: "ObjectExpression",
-      },
-    });
+
+    const objectExpressions = findJSXSpreadAttributeObject(j, component);
+
     objectExpressions.forEach((path) => {
       const attribute = j(path);
       const result =
