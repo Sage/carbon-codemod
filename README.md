@@ -33,7 +33,15 @@ Note that `<target>` is worked out relative to the current working directory.
 
 ### Debugging
 
+To debug the CLI
 - `node --inspect-brk ./bin/carbon-codemod`
+- Open the command palette and select "> Debug: Attach to Node Process (preview)"
+- You can add addition arguments as required e.g. `node --inspect-brk ./bin/carbon-codemod --version`
+
+It's also possible to debug the tests
+- Open the spec file
+- Use `Run Current Spec` in the "Run" pane
+- You can use the "Debug Console" to interact with the debugger 
 
 You can use [astexplorer.net](https://astexplorer.net/) to help understand the existing structure of files. You should use the following settings:
 
