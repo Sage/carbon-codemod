@@ -1,3 +1,10 @@
+## [1.8.0](https://github.com/Sage/carbon-codemod/compare/v1.7.0...v1.8.0) (2021-01-26)
+
+
+### Features
+
+* add prop codemod ([1706a21](https://github.com/Sage/carbon-codemod/commit/1706a21b46e739075a01c689447badb39e538df8))
+
 ## [1.7.0](https://github.com/Sage/carbon-codemod/compare/v1.6.1...v1.7.0) (2020-11-13)
 
 
