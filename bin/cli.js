@@ -124,6 +124,13 @@ function Cli() {
     .action((target, command) => runTransform(target, command, program));
 
   program
+    .command("add-prop <target> <component> <prop> <value>")
+    .description("adds a new prop and value to the specified component")
+    .action((target, component, prop, value, command) =>
+      runTransform(target, command, program, { component, prop, value })
+    );
+
+  program
     .command("rename-prop <target> <component> <old> <replacement>")
     .description(
       `
