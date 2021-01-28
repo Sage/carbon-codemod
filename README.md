@@ -8,7 +8,7 @@ The release notes of `carbon-react` will indicate which codemod you should use.
 ```
 npx carbon-codemod <name-of-codemod> <target>
 ```
-
+- [`add-prop`](./transforms/add-prop)
 - [`button-destructive`](./transforms/button-destructive)
 - [`deprecate-create`](./transforms/deprecate-create)
 - [`message-remove-classic-theme`](./transforms/message-remove-classic-theme)
