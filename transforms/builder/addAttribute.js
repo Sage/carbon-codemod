@@ -1,11 +1,13 @@
-const addAttribute = (path, attribute, value) => (
+const addAttribute = (path, attribute, value, importName) => (
   fileInfo,
   api,
   options,
   j,
   root
 ) => {
-  const components = root.findJSXElementsByImport(path);
+  const components = importName
+    ? root.findJSXElementsByNamedImport(path, importName)
+    : root.findJSXElementsByImport(path);
 
   // If the component is not imported, skip this file
   if (components.size() === 0) {
