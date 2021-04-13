@@ -55,7 +55,8 @@ const finder = (
     ObjectExpressionsLiteralReplacement: ObjectExpressionsLiteralReplacementFn,
     ObjectExpressionsIdentifierReplacement: ObjectExpressionsIdentifierReplacementFn,
     JSXSpreadAttributeIdentifierReplacement: JSXSpreadAttributeIdentifierReplacementFn,
-  }
+  },
+  importName
 ) => (fileInfo, api, options, j, root) => {
   /*
    * <Component prop="" />
@@ -150,7 +151,9 @@ const finder = (
     return didUpdate;
   };
 
-  const components = root.findJSXElementsByImport(path);
+  const components = importName
+    ? root.findJSXElementsByNamedImport(path, importName)
+    : root.findJSXElementsByImport(path);
 
   if (components.size() === 0) {
     // If the component is not imported, skip this file

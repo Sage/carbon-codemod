@@ -41,15 +41,26 @@ If there is a pattern that you use that is not transformed, please file a featur
 
 ## Usage
 
+### Components imported as a default import:
+
 `npx carbon-codemod rename-prop <target> <component-import-path> <old-prop> <new-prop>`
 
-### Example
+`npx carbon-codemod rename-prop src carbon-react/lib/components/button oldProp newProp`
+
+### Components imported as a named import:
+
+`npx carbon-codemod rename-prop <target> <component-import-path> <old-prop> <new-prop> -i <component-import-name>`
+
+`npx carbon-codemod rename-prop src carbon-react/lib/components/accordion oldProp newProp -i Accordion`
+
+## Example
 
 `npx carbon-codemod rename-prop src carbon-react/lib/components/button buttonType variant`
 
 ```js
 import Button from "carbon-react/lib/components/button";
 ```
+
 ```diff
 - <Button buttonType="primary>Button</Button>
 + <Button variant="primary">Button</Button>

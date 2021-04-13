@@ -41,15 +41,26 @@ If there is a pattern that you use that is not transformed, please file a featur
 
 ## Usage
 
+### Components imported as a default import:
+
 `npx carbon-codemod remove-prop <target> <component-import-path> <prop>`
 
-### Example
+`npx carbon-codemod remove-prop src carbon-react/lib/components/button oldProp`
+
+### Components imported as a named import:
+
+`npx carbon-codemod remove-prop <target> <component-import-path> <prop> -i <component-import-name>`
+
+`npx carbon-codemod remove-prop src carbon-react/lib/components/accordion oldProp -i Accordion`
+
+## Example
 
 `npx carbon-codemod remove-prop src carbon-react/lib/components/button buttonType`
 
 ```js
 import Button from "carbon-react/lib/components/button";
 ```
+
 ```diff
 - <Button buttonType="primary>Button</Button>
 + <Button>Button</Button>
