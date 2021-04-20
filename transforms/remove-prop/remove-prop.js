@@ -9,9 +9,9 @@ const transformer = (fileInfo, api, options) => {
   registerMethods(j);
   const root = j(fileInfo.source);
 
-  const { component, prop } = options;
+  const { importPath, prop, importName } = options;
 
-  const result = removeAttribute(component, prop)(
+  const result = removeAttribute(importPath, prop, importName)(
     fileInfo,
     api,
     options,

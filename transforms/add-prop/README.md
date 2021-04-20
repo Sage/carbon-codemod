@@ -7,13 +7,25 @@ This universal codemod provides possibility to add any prop to any component.
 + <Component newProp="info" />
 
 ```
+
 ## Usage
+
+### Components imported as a default import:
 
 `npx carbon-codemod add-prop <target> <component-import-path> <prop> <value>`
 
-### Examples
+`npx carbon-codemod add-prop src carbon-react/lib/components/button newProp "info"`
+
+### Components imported as a named import:
+
+`npx carbon-codemod add-prop <target> <component-import-path> <prop> <value> -i <component-import-name>`
+
+`npx carbon-codemod add-prop src carbon-react/lib/components/accordion newProp "info" -i Accordion`
+
+## Examples
 
 ### String
+
 `npx carbon-codemod add-prop src carbon-react/lib/components/button ml "16px"`
 
 ```diff
@@ -22,6 +34,7 @@ This universal codemod provides possibility to add any prop to any component.
 ```
 
 ### Number
+
 `npx carbon-codemod add-prop src carbon-react/lib/components/button ml 2`
 
 ```diff
@@ -30,6 +43,7 @@ This universal codemod provides possibility to add any prop to any component.
 ```
 
 ### Boolean - True
+
 `npx carbon-codemod add-prop src carbon-react/lib/components/button hasBorder true`
 
 ```diff
@@ -38,6 +52,7 @@ This universal codemod provides possibility to add any prop to any component.
 ```
 
 ### Boolean - False
+
 `npx carbon-codemod add-prop src carbon-react/lib/components/button hasBorder false`
 
 ```diff

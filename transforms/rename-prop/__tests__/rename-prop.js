@@ -4,7 +4,7 @@ defineTest(
   __dirname,
   "rename-prop",
   {
-    component: "carbon-react/lib/components/component",
+    importPath: "carbon-react/lib/components/component",
     old: "old",
     replacement: "replacement",
   },
@@ -15,7 +15,19 @@ defineTest(
   __dirname,
   "rename-prop",
   {
-    component: "carbon-react/lib/components/component",
+    importPath: "carbon-react/lib/components/component",
+    importName: "Component",
+    old: "old",
+    replacement: "replacement",
+  },
+  "NamedImport"
+);
+
+defineTest(
+  __dirname,
+  "rename-prop",
+  {
+    importPath: "carbon-react/lib/components/component",
     old: "old",
     replacement: "replacement",
   },
@@ -26,7 +38,7 @@ defineTest(
   __dirname,
   "rename-prop",
   {
-    component: "carbon-react/lib/components/component",
+    importPath: "carbon-react/lib/components/component",
     old: "old",
     replacement: "replacement",
   },
