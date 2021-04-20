@@ -95,51 +95,63 @@ const JSXExpressionReplacement = (j, attribute, oldValue, newValue) => {
   return didUpdate;
 };
 
-const replaceAttributeValue = (path, attribute, oldValue, newValue) =>
-  finder(path, attribute, {
-    JSXAttributeReplacement: (attributes, j) => {
-      const selectedAttribute = attributes.last();
+const replaceAttributeValue = (
+  path,
+  attribute,
+  oldValue,
+  newValue,
+  importName
+) =>
+  finder(
+    path,
+    attribute,
+    {
+      JSXAttributeReplacement: (attributes, j) => {
+        const selectedAttribute = attributes.last();
 
-      let didUpdate =
-        LiteralReplacement(
-          j,
-          selectedAttribute,
-          attribute,
-          oldValue,
-          newValue
-        ) || JSXExpressionReplacement(j, selectedAttribute, oldValue, newValue);
-      return didUpdate;
-    },
+        let didUpdate =
+          LiteralReplacement(
+            j,
+            selectedAttribute,
+            attribute,
+            oldValue,
+            newValue
+          ) ||
+          JSXExpressionReplacement(j, selectedAttribute, oldValue, newValue);
+        return didUpdate;
+      },
 
-    ObjectExpressionsLiteralReplacement: (results, j) => {
-      let didUpdate = false;
-      const value = results.get("value");
-      if (value.value.value === oldValue) {
-        value.replace(j.literal(newValue));
-        didUpdate = true;
-      }
-      return didUpdate;
-    },
+      ObjectExpressionsLiteralReplacement: (results, j) => {
+        let didUpdate = false;
+        const value = results.get("value");
+        if (value.value.value === oldValue) {
+          value.replace(j.literal(newValue));
+          didUpdate = true;
+        }
+        return didUpdate;
+      },
 
-    ObjectExpressionsIdentifierReplacement: (results, j) => {
-      let didUpdate = false;
-      const value = results.get("value");
-      if (value.value.value === oldValue) {
-        value.replace(j.literal(newValue));
-        didUpdate = true;
-      }
-      return didUpdate;
-    },
+      ObjectExpressionsIdentifierReplacement: (results, j) => {
+        let didUpdate = false;
+        const value = results.get("value");
+        if (value.value.value === oldValue) {
+          value.replace(j.literal(newValue));
+          didUpdate = true;
+        }
+        return didUpdate;
+      },
 
-    JSXSpreadAttributeIdentifierReplacement: (results, j) => {
-      let didUpdate = false;
-      const value = results.get("value");
-      if (value.value.value === oldValue) {
-        value.replace(j.literal(newValue));
-        didUpdate = true;
-      }
-      return didUpdate;
+      JSXSpreadAttributeIdentifierReplacement: (results, j) => {
+        let didUpdate = false;
+        const value = results.get("value");
+        if (value.value.value === oldValue) {
+          value.replace(j.literal(newValue));
+          didUpdate = true;
+        }
+        return didUpdate;
+      },
     },
-  });
+    importName
+  );
 
 export default replaceAttributeValue;

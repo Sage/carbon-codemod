@@ -1,7 +1,7 @@
 /*
- * Convert all <Component old="" /> to <Component />
+ * Add a prop to a component <Component /> to <Component prop=value/>
  */
-import { removeAttribute } from "../builder";
+import { addAttribute } from "../builder";
 import registerMethods from "../registerMethods";
 
 const transformer = (fileInfo, api, options) => {
@@ -9,9 +9,9 @@ const transformer = (fileInfo, api, options) => {
   registerMethods(j);
   const root = j(fileInfo.source);
 
-  const { importPath, prop, importName } = options;
+  const { importPath, prop, value, importName } = options;
 
-  const result = removeAttribute(importPath, prop, importName)(
+  const result = addAttribute(importPath, prop, value, importName)(
     fileInfo,
     api,
     options,

@@ -124,74 +124,132 @@ function Cli() {
     .action((target, command) => runTransform(target, command, program));
 
   program
-    .command("rename-prop <target> <component> <old> <replacement>")
+    .command("add-prop <target> <import-path> <prop> <value>")
+    .option("-i, --import-name <import-name>", "component named import name")
+    .description("adds a new prop and value to the specified component")
+    .description(
+      `
+Codemod used for adding a new prop
+Usage
+  npx carbon-codemod add-prop <target> <import-path> <prop> <value>
+
+  target       Files or directory to transform
+  import-path  Import path of component
+  prop         Prop name
+  value        Prop value
+
+Options
+  --import-name:  Component named import name
+
+Example
+  default import:  npx carbon-codemod add-prop src carbon-react/lib/component propName propValue
+  named import:    npx carbon-codemod add-prop src carbon-react/lib/component propName propValue -i Component
+    `
+    )
+    .action((target, importPath, prop, value, command) => {
+      const { importName } = command;
+      runTransform(target, command, program, {
+        importPath,
+        prop,
+        value,
+        importName,
+      });
+    });
+
+  program
+    .command("rename-prop <target> <import-path> <old> <replacement>")
+    .option("-i, --import-name <import-name>", "component named import name")
     .description(
       `
 Codemod used for prop renaming
 Usage
-  npx carbon-codemod rename-prop <target> <component> <old> <replacement>
+  npx carbon-codemod rename-prop <target> <import-path> <old> <replacement>
 
   target       Files or directory to transform
-  component    Import path of component which prop should be renamed
+  import-path  Import path of component which prop should be renamed
   old          Old prop name
   replacement  New prop name
 
+Options
+  --import-name:  Component named import name
+
 Example
-  npx carbon-codemod rename-prop src carbon-react/lib/components/component oldProp newProp
+  default import:  npx carbon-codemod rename-prop src carbon-react/lib/component oldProp newProp
+  named import:    npx carbon-codemod rename-prop src carbon-react/lib/component oldProp newProp -i Component
     `
     )
-    .action((target, component, old, replacement, command) =>
-      runTransform(target, command, program, { component, old, replacement })
-    );
+    .action((target, importPath, old, replacement, command) => {
+      const { importName } = command;
+      runTransform(target, command, program, {
+        importPath,
+        old,
+        replacement,
+        importName,
+      });
+    });
 
   program
-    .command("remove-prop <target> <component> <prop>")
+    .command("remove-prop <target> <import-path> <prop>")
+    .option("-i, --import-name <import-name>", "component named import name")
     .description(
       `
 Codemod used for prop removal
 Usage
-  npx carbon-codemod remove-prop <target> <component> <prop>
+  npx carbon-codemod remove-prop <target> <import-path> <prop>
 
   target       Files or directory to transform
-  component    Import path of component which prop should be removed
+  import-path  Import path of component which prop should be removed
   prop         Prop to be removed
 
+Options
+  --import-name:  Component named import name
+
 Example
-  npx carbon-codemod remove-prop src carbon-react/lib/components/component prop
+  default import:  npx carbon-codemod remove-prop src carbon-react/lib/component prop
+  named import:    npx carbon-codemod remove-prop src carbon-react/lib/component prop -i Component
     `
     )
-    .action((target, component, prop, command) =>
-      runTransform(target, command, program, { component, prop })
-    );
+    .action((target, importPath, prop, command) => {
+      const { importName } = command;
+      runTransform(target, command, program, { importPath, prop, importName });
+    });
 
   program
     .command(
-      "replace-prop-value <target> <component> <prop> <oldValue> <newValue>"
+      "replace-prop-value <target> <import-path> <prop> <oldValue> <newValue>"
     )
+    .option("-i, --import-name <import-name>", "component named import name")
     .description(
       `
 Codemod used for prop value changing
 Usage
-  npx carbon-codemod replace-prop-value <target> <component> <prop> <oldValue> <newValue>
+  npx carbon-codemod replace-prop-value <target> <import-path> <prop> <oldValue> <newValue>
 
   target       Files or directory to transform
-  component    Import path of component which prop should be renamed
+  import-path  Import path of component which prop should be renamed
   prop         Prop name
   oldValue     Prop value to change
   newValue     Value to change prop to
 
+Options
+  --import-name:  Component named import name
+
 Example
-  npx carbon-codemod replace-prop-value src carbon-react/lib/components/component prop oldValue newValue
+  default import:  npx carbon-codemod replace-prop-value src carbon-react/lib/component prop oldValue newValue
+  named import:    npx carbon-codemod replace-prop-value src carbon-react/lib/component prop oldValue newValue -i Component
     `
     )
-    .action((target, component, attribute, oldValue, newValue, command) =>
+    .action((target, importPath, attribute, oldValue, newValue, command) => {
+      const { importName } = command;
+
       runTransform(target, command, program, {
-        component,
+        importPath,
         attribute,
         oldValue,
         newValue,
-      })
-    );
+        importName,
+      });
+    });
 
   program.on("command:*", function () {
     console.error(

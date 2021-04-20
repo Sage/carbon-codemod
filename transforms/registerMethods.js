@@ -38,14 +38,23 @@ export default once((j) => {
         "findJSXElementsByImport(...) needs a name to look for"
       );
 
-      return this.find(j.ImportDeclaration, {
-        source: { value: importName },
-      })
+      let root = this;
+
+      // We want to find the ImportDeclaration from the root
+      while (root._parent) {
+        root = root._parent;
+      }
+
+      return root
+        .find(j.ImportDeclaration, {
+          source: { value: importName },
+        })
         .find(j.ImportDefaultSpecifier)
         .map((path) => {
           const id = path.node.local.name;
           if (id) {
-            return j([path]).closestScope().findJSXElements(id).paths();
+            // We want to find the JSXElements that are descendants of the current path
+            return this.findJSXElements(id).paths();
           }
         });
     },
