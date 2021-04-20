@@ -4,7 +4,7 @@ defineTest(
   __dirname,
   "replace-prop-value",
   {
-    component: "carbon-react/lib/components/component",
+    importPath: "carbon-react/lib/components/component",
     attribute: "prop",
     oldValue: "test",
     newValue: 3,
@@ -16,7 +16,7 @@ defineTest(
   __dirname,
   "replace-prop-value",
   {
-    component: "carbon-react/lib/components/component",
+    importPath: "carbon-react/lib/components/component",
     attribute: "prop",
     oldValue: "oldString",
     newValue: "newString",
@@ -28,7 +28,20 @@ defineTest(
   __dirname,
   "replace-prop-value",
   {
-    component: "carbon-react/lib/components/component",
+    importPath: "carbon-react/lib/components/component",
+    importName: "Component",
+    attribute: "prop",
+    oldValue: "oldString",
+    newValue: "newString",
+  },
+  "NamedImport"
+);
+
+defineTest(
+  __dirname,
+  "replace-prop-value",
+  {
+    importPath: "carbon-react/lib/components/component",
     attribute: "prop",
     oldValue: "oldString",
     newValue: 2,
@@ -40,7 +53,7 @@ defineTest(
   __dirname,
   "replace-prop-value",
   {
-    component: "carbon-react/lib/components/component",
+    importPath: "carbon-react/lib/components/component",
     attribute: "prop",
     oldValue: 3,
     newValue: "newString",
@@ -52,7 +65,7 @@ defineTest(
   __dirname,
   "replace-prop-value",
   {
-    component: "carbon-react/lib/components/component",
+    importPath: "carbon-react/lib/components/component",
     attribute: "prop",
     oldValue: 3,
     newValue: 2,
@@ -64,7 +77,7 @@ defineTest(
   __dirname,
   "replace-prop-value",
   {
-    component: "carbon-react/lib/components/component",
+    importPath: "carbon-react/lib/components/component",
     attribute: "prop",
     oldValue: "3",
     newValue: "newValue",
@@ -76,7 +89,7 @@ defineTest(
   __dirname,
   "replace-prop-value",
   {
-    component: "carbon-react/lib/components/component",
+    importPath: "carbon-react/lib/components/component",
     attribute: "prop",
     oldValue: "oldValue",
     newValue: "2",

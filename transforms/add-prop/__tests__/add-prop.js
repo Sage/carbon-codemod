@@ -4,7 +4,7 @@ defineTest(
   __dirname,
   "add-prop",
   {
-    component: "carbon-react/lib/components/button",
+    importPath: "carbon-react/lib/components/button",
     prop: "ml",
     value: 2,
   },
@@ -15,7 +15,7 @@ defineTest(
   __dirname,
   "add-prop",
   {
-    component: "carbon-react/lib/components/button",
+    importPath: "carbon-react/lib/components/button",
     prop: "ml",
     value: "16px",
   },
@@ -26,7 +26,7 @@ defineTest(
   __dirname,
   "add-prop",
   {
-    component: "carbon-react/lib/components/button",
+    importPath: "carbon-react/lib/components/button",
     prop: "hasBorder",
     value: true,
   },
@@ -37,7 +37,7 @@ defineTest(
   __dirname,
   "add-prop",
   {
-    component: "carbon-react/lib/components/button",
+    importPath: "carbon-react/lib/components/button",
     prop: "hasBorder",
     value: false,
   },
@@ -48,7 +48,7 @@ defineTest(
   __dirname,
   "add-prop",
   {
-    component: "carbon-react/lib/components/component",
+    importPath: "carbon-react/lib/components/component",
     prop: "newProp",
     value: "value",
   },
@@ -59,7 +59,7 @@ defineTest(
   __dirname,
   "add-prop",
   {
-    component: "carbon-react/lib/components/button",
+    importPath: "carbon-react/lib/components/button",
     prop: "ml",
     value: "2",
   },
@@ -70,7 +70,7 @@ defineTest(
   __dirname,
   "add-prop",
   {
-    component: "carbon-react/lib/components/button",
+    importPath: "carbon-react/lib/components/button",
     prop: "hasLink",
     value: "test foo bar",
   },
@@ -81,9 +81,21 @@ defineTest(
   __dirname,
   "add-prop",
   {
-    component: "carbon-react/lib/components/button",
+    importPath: "carbon-react/lib/components/button",
     prop: "info",
     value: "test foo bar",
   },
   "Object"
+);
+
+defineTest(
+  __dirname,
+  "add-prop",
+  {
+    importPath: "carbon-react/lib/components/button",
+    importName: "Button",
+    prop: "import",
+    value: "named",
+  },
+  "NamedImport"
 );

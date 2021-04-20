@@ -246,7 +246,7 @@ describe("run", () => {
         "--transform",
         path.join(Cli.__transformsDir, "rename-prop", "rename-prop.js"),
         path.join(process.cwd(), "src"),
-        "--component=carbon-react/lib/components/button",
+        "--importPath=carbon-react/lib/components/button",
         "--old=buttonType",
         "--replacement=variant",
       ];
@@ -272,7 +272,7 @@ describe("run", () => {
         "--transform",
         path.join(Cli.__transformsDir, "remove-prop", "remove-prop.js"),
         path.join(process.cwd(), "src"),
-        "--component=carbon-react/lib/components/button",
+        "--importPath=carbon-react/lib/components/button",
         "--prop=buttonType",
       ];
       expect(console.log).toBeCalledWith(`jscodeshift ${args.join(" ")}`);
