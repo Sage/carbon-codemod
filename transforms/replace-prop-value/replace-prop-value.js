@@ -9,13 +9,14 @@ const transformer = (fileInfo, api, options) => {
   registerMethods(j);
   const root = j(fileInfo.source);
 
-  const { component, attribute, oldValue, newValue } = options;
+  const { importPath, attribute, oldValue, newValue, importName } = options;
 
   const result = replaceAttributeValue(
-    component,
+    importPath,
     attribute,
     oldValue,
-    newValue
+    newValue,
+    importName
   )(fileInfo, api, options, j, root);
 
   if (result) {
