@@ -97,6 +97,11 @@ function Cli() {
     .action((target, command) => runTransform(target, command, program));
 
   program
+    .command("move-experimental-components <target>")
+    .description("Replace experimental component paths with new ones")
+    .action((target, command) => runTransform(target, command, program));
+
+  program
     .command("deprecate-create <target>")
     .description("Convert create to dashed fullwidth button")
     .action((target, command) => runTransform(target, command, program));
