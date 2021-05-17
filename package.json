@@ -39,7 +39,7 @@
   "dependencies": {
     "chalk": "^4.1.0",
     "commander": "^6.2.0",
-    "execa": "^4.1.0",
+    "execa": "^5.0.0",
     "jscodeshift": "^0.10.0"
   },
   "lint-staged": {
