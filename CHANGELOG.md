@@ -1,3 +1,10 @@
+### [1.10.1](https://github.com/Sage/carbon-codemod/compare/v1.10.0...v1.10.1) (2021-05-18)
+
+
+### Bug Fixes
+
+* trigger ci ([82a2011](https://github.com/Sage/carbon-codemod/commit/82a2011df90ce5bc5e8e3667cf20399860548d69))
+
 ## [1.10.0](https://github.com/Sage/carbon-codemod/compare/v1.9.0...v1.10.0) (2021-05-07)
 
 
