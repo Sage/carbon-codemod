@@ -1,0 +1,8 @@
+name: CodeQL config
+
+paths:
+  - bin
+  - transforms
+paths-ignore:
+  - "**/__tests__/**"
+  - "**/__testfixtures__/**"
