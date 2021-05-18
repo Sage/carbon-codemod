@@ -1,4 +1,4 @@
-# carbon-codemod [![Travis Status](https://travis-ci.org/Sage/carbon-codemod.svg?branch=master)](https://travis-ci.org/Sage/carbon-codemod) [![npm](https://img.shields.io/npm/v/carbon-codemod.svg)](https://www.npmjs.com/package/carbon-codemod)
+# carbon-codemod [!build](https://github.com/Sage/carbon-codemod/tree/master/.github/workflows/semantic-release.yml?branch=master) [![npm](https://img.shields.io/npm/v/carbon-codemod.svg)](https://www.npmjs.com/package/carbon-codemod)
 
 This is a collection of codemods that help you upgrade to a new version of `carbon-react`.
 The release notes of `carbon-react` will indicate which codemod you should use.
@@ -8,6 +8,7 @@ The release notes of `carbon-react` will indicate which codemod you should use.
 ```
 npx carbon-codemod <name-of-codemod> <target>
 ```
+
 - [`add-prop`](./transforms/add-prop)
 - [`button-destructive`](./transforms/button-destructive)
 - [`deprecate-create`](./transforms/deprecate-create)
@@ -34,14 +35,16 @@ Note that `<target>` is worked out relative to the current working directory.
 ### Debugging
 
 To debug the CLI
+
 - `node --inspect-brk ./bin/carbon-codemod`
 - Open the command palette and select "> Debug: Attach to Node Process (preview)"
 - You can add addition arguments as required e.g. `node --inspect-brk ./bin/carbon-codemod --version`
 
 It's also possible to debug the tests
+
 - Open the spec file
 - Use `Run Current Spec` in the "Run" pane
-- You can use the "Debug Console" to interact with the debugger 
+- You can use the "Debug Console" to interact with the debugger
 
 You can use [astexplorer.net](https://astexplorer.net/) to help understand the existing structure of files. You should use the following settings:
 
@@ -69,7 +72,7 @@ The return value of the function determines the status of the transformation:
 
 - This project publishes using [`semantic-release`](https://semantic-release.gitbook.io/semantic-release/).
 - It follows [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/).
-- When a pull request is merged to master [Travis CI](https://travis-ci.org/Sage/carbon-codemod) will run `semantic-release`.
+- When a pull request is merged to master Github Actions will run `semantic-release`.
 - `semantic-release` will decide, based on the commits that have been merged, if a new release
   is required.
 - If a new release is required, a new version will be published to [npm](https://www.npmjs.com/package/carbon-codemod) and [GitHub releases](https://github.com/Sage/carbon-codemod/releases).

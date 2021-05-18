@@ -3,5 +3,4 @@
 __testfixtures__
 __tests__
 .github
-.travis.yml
 .vscode
