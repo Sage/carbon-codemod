@@ -24,7 +24,7 @@
     "babel-jest": "^27.0.2",
     "conventional-changelog-conventionalcommits": "^4.5.0",
     "cz-conventional-changelog": "^3.3.0",
-    "husky": "^6.0.0",
+    "husky": "^7.0.0",
     "jest": "^27.0.4",
     "lint-staged": "^11.0.0",
     "prettier": "^2.1.2",
