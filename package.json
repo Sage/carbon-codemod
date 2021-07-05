@@ -40,7 +40,7 @@
     "chalk": "^4.1.0",
     "commander": "^6.2.0",
     "execa": "^5.0.0",
-    "jscodeshift": "^0.10.0"
+    "jscodeshift": "^0.13.0"
   },
   "lint-staged": {
     "*.js": [
