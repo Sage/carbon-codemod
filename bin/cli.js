@@ -256,6 +256,13 @@ Example
       });
     });
 
+  program
+    .command(
+      "replace-collapsible-pod-with-accordion <target>"
+    )
+    .description("replaces deprecated collapse Pod prop with the Accordion Component")
+    .action((target, command) => runTransform(target, command, program));
+
   program.on("command:*", function () {
     console.error(
       "Invalid command: %s\nSee --help for a list of available commands.",
