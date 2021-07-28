@@ -1,3 +1,10 @@
+## [1.11.0](https://github.com/Sage/carbon-codemod/compare/v1.10.1...v1.11.0) (2021-07-28)
+
+
+### Features
+
+* add replace-collapsible-pod-with-accordion codemod ([d2e6c1a](https://github.com/Sage/carbon-codemod/commit/d2e6c1a2fce4b78bde4dc406b583e538c4208179))
+
 ### [1.10.1](https://github.com/Sage/carbon-codemod/compare/v1.10.0...v1.10.1) (2021-05-18)
 
 
