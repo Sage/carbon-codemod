@@ -263,6 +263,13 @@ Example
     .description("replaces deprecated collapse Pod prop with the Accordion Component")
     .action((target, command) => runTransform(target, command, program));
 
+  program
+    .command(
+      "move-pod-description-to-content <target>"
+    )
+    .description("removes deprecated description Pod prop and places it's value as part of the Pod content")
+    .action((target, command) => runTransform(target, command, program));
+  
   program.on("command:*", function () {
     console.error(
       "Invalid command: %s\nSee --help for a list of available commands.",
