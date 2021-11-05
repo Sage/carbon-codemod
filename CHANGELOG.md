@@ -1,3 +1,10 @@
+## [1.13.0](https://github.com/Sage/carbon-codemod/compare/v1.12.0...v1.13.0) (2021-11-05)
+
+
+### Features
+
+* add typescript support ([efe9ec0](https://github.com/Sage/carbon-codemod/commit/efe9ec0f7d69792f0621e4f386ebed49db8294a7))
+
 ## [1.12.0](https://github.com/Sage/carbon-codemod/compare/v1.11.0...v1.12.0) (2021-07-30)
 
 
