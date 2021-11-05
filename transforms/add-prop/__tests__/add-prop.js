@@ -1,101 +1,91 @@
 import defineTest from "../../../defineTest";
 
-defineTest(
-  __dirname,
-  "add-prop",
-  {
-    importPath: "carbon-react/lib/components/button",
-    prop: "ml",
-    value: 2,
-  },
-  "Number"
-);
+["tsx", "js"].forEach((fileExtension) => {
+  const prefix = fileExtension === "tsx" ? "typescript/" : "";
+  const testOptions = fileExtension === "tsx" ? { parser: "tsx" } : {};
 
-defineTest(
-  __dirname,
-  "add-prop",
-  {
-    importPath: "carbon-react/lib/components/button",
-    prop: "ml",
-    value: "16px",
-  },
-  "String"
-);
+  defineTest(
+    __dirname,
+    "add-prop",
+    {
+      importPath: "carbon-react/lib/components/button",
+      prop: "ml",
+      value: 2,
+    },
+    prefix + "Number",
+    testOptions
+  );
 
-defineTest(
-  __dirname,
-  "add-prop",
-  {
-    importPath: "carbon-react/lib/components/button",
-    prop: "hasBorder",
-    value: true,
-  },
-  "BooleanTrue"
-);
+  defineTest(
+    __dirname,
+    "add-prop",
+    {
+      importPath: "carbon-react/lib/components/button",
+      prop: "ml",
+      value: "16px",
+    },
+    prefix + "String",
+    testOptions
+  );
 
-defineTest(
-  __dirname,
-  "add-prop",
-  {
-    importPath: "carbon-react/lib/components/button",
-    prop: "hasBorder",
-    value: false,
-  },
-  "BooleanFalse"
-);
+  defineTest(
+    __dirname,
+    "add-prop",
+    {
+      importPath: "carbon-react/lib/components/button",
+      prop: "hasBorder",
+      value: true,
+    },
+    prefix + "BooleanTrue",
+    testOptions
+  );
 
-defineTest(
-  __dirname,
-  "add-prop",
-  {
-    importPath: "carbon-react/lib/components/component",
-    prop: "newProp",
-    value: "value",
-  },
-  "NoImport"
-);
+  defineTest(
+    __dirname,
+    "add-prop",
+    {
+      importPath: "carbon-react/lib/components/button",
+      prop: "hasBorder",
+      value: false,
+    },
+    prefix + "BooleanFalse",
+    testOptions
+  );
 
-defineTest(
-  __dirname,
-  "add-prop",
-  {
-    importPath: "carbon-react/lib/components/button",
-    prop: "ml",
-    value: "2",
-  },
-  "NoTransformRequired"
-);
+  defineTest(
+    __dirname,
+    "add-prop",
+    {
+      importPath: "carbon-react/lib/components/component",
+      prop: "newProp",
+      value: "value",
+    },
+    prefix + "NoImport",
+    testOptions
+  );
 
-defineTest(
-  __dirname,
-  "add-prop",
-  {
-    importPath: "carbon-react/lib/components/button",
-    prop: "hasLink",
-    value: "test foo bar",
-  },
-  "Node"
-);
+  defineTest(
+    __dirname,
+    "add-prop",
+    {
+      importPath: "carbon-react/lib/components/button",
+      prop: "ml",
+      value: "2",
+    },
+    prefix + "NoTransformRequired",
+    testOptions
+  );
 
-defineTest(
-  __dirname,
-  "add-prop",
-  {
-    importPath: "carbon-react/lib/components/button",
-    prop: "info",
-    value: "test foo bar",
-  },
-  "Object"
-);
-
-defineTest(
-  __dirname,
-  "add-prop",
-  {
-    importPath: "carbon-react/lib/components/button",
-    importName: "Button",
-    prop: "import",
-    value: "named",
-  },
-  "NamedImport"
-);
+  defineTest(
+    __dirname,
+    "add-prop",
+    {
+      importPath: "carbon-react/lib/components/button",
+      importName: "Button",
+      prop: "import",
+      value: "named",
+    },
+    prefix + "NamedImport",
+    testOptions
+  );
+});

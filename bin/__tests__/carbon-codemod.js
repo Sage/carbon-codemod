@@ -165,6 +165,8 @@ describe("run", () => {
       const args = [
         "--verbose=2",
         "--ignore-pattern=**/node_modules/**",
+        "--parser=tsx",
+        "--extensions=tsx,ts,jsx,js",
         "--transform",
         path.join(
           Cli.__transformsDir,
@@ -190,6 +192,8 @@ describe("run", () => {
       const args = [
         "--verbose=2",
         "--ignore-pattern=**/node_modules/**",
+        "--parser=tsx",
+        "--extensions=tsx,ts,jsx,js",
         "--transform",
         path.join(
           Cli.__transformsDir,
@@ -215,6 +219,8 @@ describe("run", () => {
       const args = [
         "--verbose=2",
         "--ignore-pattern=**/node_modules/**",
+        "--parser=tsx",
+        "--extensions=tsx,ts,jsx,js",
         "--transform",
         path.join(
           Cli.__transformsDir,
@@ -243,6 +249,8 @@ describe("run", () => {
       const args = [
         "--verbose=2",
         "--ignore-pattern=**/node_modules/**",
+        "--parser=tsx",
+        "--extensions=tsx,ts,jsx,js",
         "--transform",
         path.join(Cli.__transformsDir, "rename-prop", "rename-prop.js"),
         path.join(process.cwd(), "src"),
@@ -269,6 +277,8 @@ describe("run", () => {
       const args = [
         "--verbose=2",
         "--ignore-pattern=**/node_modules/**",
+        "--parser=tsx",
+        "--extensions=tsx,ts,jsx,js",
         "--transform",
         path.join(Cli.__transformsDir, "remove-prop", "remove-prop.js"),
         path.join(process.cwd(), "src"),

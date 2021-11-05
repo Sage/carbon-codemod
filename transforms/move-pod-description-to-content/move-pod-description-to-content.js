@@ -69,7 +69,9 @@ export default function transformer(file, api) {
           );
 
           if (descriptionInDeclarationScope.size()) {
-            descriptionContent = getDescriptionContent(descriptionInDeclarationScope);
+            descriptionContent = getDescriptionContent(
+              descriptionInDeclarationScope
+            );
             descriptionInDeclarationScope.remove();
           }
         });
@@ -92,7 +94,9 @@ export default function transformer(file, api) {
         );
 
         if (descriptionAsShorthandProp.size()) {
-          descriptionContent = getDescriptionContent(descriptionAsShorthandProp);
+          descriptionContent = getDescriptionContent(
+            descriptionAsShorthandProp
+          );
           descriptionAsShorthandProp.remove();
         }
       }
@@ -110,7 +114,7 @@ export default function transformer(file, api) {
         descriptionClosingTag,
         ...accordionNode.paths()[0].value.children,
       ];
-    } else {    
+    } else {
       podNode.node.children = [
         descriptionOpeningTag,
         descriptionContent,
@@ -148,7 +152,10 @@ export default function transformer(file, api) {
 
   function getDescriptionOpeningTag() {
     return j.jsxOpeningElement(j.jsxIdentifier(names.typographyComponent), [
-      j.jsxAttribute(j.jsxIdentifier("data-element"), j.stringLiteral("description")),
+      j.jsxAttribute(
+        j.jsxIdentifier("data-element"),
+        j.stringLiteral("description")
+      ),
       j.jsxAttribute(j.jsxIdentifier("as"), j.stringLiteral("div")),
       j.jsxAttribute(j.jsxIdentifier("fontSize"), j.stringLiteral("13px")),
       j.jsxAttribute(j.jsxIdentifier("lineHeight"), j.stringLiteral("normal")),
@@ -164,10 +171,8 @@ export default function transformer(file, api) {
     }
 
     return isValueLiteral
-        ? j.stringLiteral(propValue.value)
-        : j.jsxExpressionContainer(
-            j.jsxIdentifier(propValue.expression.name)
-          );
+      ? j.stringLiteral(propValue.value)
+      : j.jsxExpressionContainer(j.jsxIdentifier(propValue.expression.name));
   }
 
   function hasDescriptionProp(element) {

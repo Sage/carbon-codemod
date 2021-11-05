@@ -50,16 +50,20 @@ const runTransform = (target, command, program, options = {}) => {
     if (dry) {
       args.push("--dry");
     }
+
+    args.push("--parser=tsx");
+
+    args.push("--extensions=tsx,ts,jsx,js");
+
     args.push("--transform", path.join(transformsDir, name, `${name}.js`));
 
     args.push(path.resolve(process.cwd(), target));
 
     Object.keys(options).forEach((key) => {
       const type = typeof options[key];
-
       if (type === "string") {
         args.push(`--${key}=${options[key]}`);
-      } else {
+      } else if (type !== "undefined") {
         console.error(
           `Unable to use argument ${key}, ${type} arguments are not supported yet.`
         );
@@ -257,19 +261,19 @@ Example
     });
 
   program
-    .command(
-      "replace-collapsible-pod-with-accordion <target>"
+    .command("replace-collapsible-pod-with-accordion <target>")
+    .description(
+      "replaces deprecated collapse Pod prop with the Accordion Component"
     )
-    .description("replaces deprecated collapse Pod prop with the Accordion Component")
     .action((target, command) => runTransform(target, command, program));
 
   program
-    .command(
-      "move-pod-description-to-content <target>"
+    .command("move-pod-description-to-content <target>")
+    .description(
+      "removes deprecated description Pod prop and places it's value as part of the Pod content"
     )
-    .description("removes deprecated description Pod prop and places it's value as part of the Pod content")
     .action((target, command) => runTransform(target, command, program));
-  
+
   program.on("command:*", function () {
     console.error(
       "Invalid command: %s\nSee --help for a list of available commands.",
