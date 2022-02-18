@@ -118,6 +118,18 @@ export default once((j) => {
       }
       return scope;
     },
+
+    /**
+     * Finds JSX Atribute in the topmost JSXOpeningElement by it's name
+     */
+    findJSXAttribute: function (attributeName) {
+      return this.find(j.JSXOpeningElement).at(0).find(j.JSXAttribute, {
+        name: {
+          type: "JSXIdentifier",
+          name: attributeName,
+        },
+      });
+    },
   });
 
   j.registerMethods(
