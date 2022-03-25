@@ -126,6 +126,11 @@ function Cli() {
     .action((target, command) => runTransform(target, command, program));
 
   program
+    .command("replace-row-column-with-grid <target>")
+    .description("Replaces deprecated Row and Column components with Grid component")
+    .action((target, command) => runTransform(target, command, program));
+
+  program
     .command("tile-update-padding-prop <target>")
     .description(
       "Replace padding prop with p prop and change values on tile component"
