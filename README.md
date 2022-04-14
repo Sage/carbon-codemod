@@ -12,14 +12,22 @@ npx carbon-codemod <name-of-codemod> <target>
 - [`add-prop`](./transforms/add-prop)
 - [`button-destructive`](./transforms/button-destructive)
 - [`deprecate-create`](./transforms/deprecate-create)
-- [`message-remove-classic-theme`](./transforms/message-remove-classic-theme)
-- [`rename-prop`](./transforms/rename-prop)
-- [`remove-prop`](./transforms/remove-prop)
-- [`replace-prop-value`](./transforms/replace-prop-value)
-- [`tile-update-padding-prop`](./transforms/tile-update-padding-prop)
 - [`dialog-full-screen-app-wrapper`](./transforms/dialog-full-screen-app-wrapper)
+- [`message-remove-classic-theme`](./transforms/message-remove-classic-theme)
+- [`move-experimental-components`](./transforms/move-experimental-components)
+- [`move-pod-description-to-content`](./transforms/move-pod-description-to-content)
+- [`remove-prop`](./transforms/remove-prop)
+- [`rename-prop`](./transforms/rename-prop)
+- [`replace-collapsible-pod-with-accordion`](./transforms/replace-collapsible-pod-with-accordion)
+- [`replace-flash-with-toast`](./transforms/replace-flash-with-toast)
+- [`replace-prop-value`](./transforms/replace-prop-value)
+- [`replace-row-column-with-grid`](./transforms/replace-row-column-with-grid)
+- [`tile-update-padding-prop`](./transforms/tile-update-padding-prop)
 
 Note that `<target>` is worked out relative to the current working directory.
+
+Make sure that the codemod is not being run in a folder containing a `package.json` file,
+as it may fail reporting missing dependencies.
 
 ## Development
 
