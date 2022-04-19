@@ -29,6 +29,21 @@ Note that `<target>` is worked out relative to the current working directory.
 Make sure that the codemod is not being run in a folder containing a `package.json` file,
 as it may fail reporting missing dependencies.
 
+For TypeScript codebase conversion use the `--typescript` option:
+
+```
+npx carbon-codemod <name-of-codemod> <target> --typescript
+```
+
+List of codemods with TypeScript support:
+
+- [`message-remove-classic-theme`](./transforms/message-remove-classic-theme)
+- [`move-experimental-components`](./transforms/move-experimental-components)
+- [`rename-prop`](./transforms/rename-prop)
+- [`remove-prop`](./transforms/remove-prop)
+- [`replace-row-column-with-grid`](./transforms/replace-row-column-with-grid)
+
+
 ## Development
 
 `carbon-codemod` is a wrapper around [`jscodeshift`](https://github.com/facebook/jscodeshift).
@@ -56,7 +71,7 @@ It's also possible to debug the tests
 
 You can use [astexplorer.net](https://astexplorer.net/) to help understand the existing structure of files. You should use the following settings:
 
-- parser: `esprima`
+- parser: `esprima` for js or `@babel/parser` for TypeScript
 - transform: `jscodeshift`
 
 ### Transformation Status
@@ -75,6 +90,7 @@ The return value of the function determines the status of the transformation:
 - `npm test`
 - It's important to test that each codemod is idempotent.
 - Use `defineTest` to write new tests, this will create a fixture test and an idempotent test.
+- A codemod should convert both javascript and TypeScript projects.
 
 ### Releasing
 
