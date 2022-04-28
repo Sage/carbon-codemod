@@ -1,3 +1,10 @@
+### [1.14.1](https://github.com/Sage/carbon-codemod/compare/v1.14.0...v1.14.1) (2022-04-28)
+
+
+### Bug Fixes
+
+* **parser:** revert parser to default and add typescript option ([8a901a8](https://github.com/Sage/carbon-codemod/commit/8a901a80449a314c81af9ec4c3124b2739f42bf6))
+
 ## [1.14.0](https://github.com/Sage/carbon-codemod/compare/v1.13.0...v1.14.0) (2022-03-25)
 
 
