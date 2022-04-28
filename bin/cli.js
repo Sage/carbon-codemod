@@ -39,7 +39,7 @@ const transformsDir = path.resolve(__dirname, "../", "transforms");
 
 const runTransform = (target, command, program, options = {}) => {
   try {
-    const { force, dry } = program.opts();
+    const { force, dry, typescript } = program.opts();
     const name = command.name();
 
     if (!dry) {
@@ -51,9 +51,13 @@ const runTransform = (target, command, program, options = {}) => {
       args.push("--dry");
     }
 
-    args.push("--parser=tsx");
+    if (typescript) {
+      args.push("--parser=tsx");
+      args.push("--extensions=tsx,ts,jsx,js");
+    } else {
+      args.push("--extensions=jsx,js");
+    }
 
-    args.push("--extensions=tsx,ts,jsx,js");
 
     args.push("--transform", path.join(transformsDir, name, `${name}.js`));
 
@@ -88,16 +92,20 @@ const runTransform = (target, command, program, options = {}) => {
 
 function Cli() {
   const program = new commander.Command();
+
+
   program
     .version(packageJSON.version)
     .option("--force", "skip safety checks")
-    .option("--dry", "dry run (no changes are made to files)");
+    .option("--dry", "dry run (no changes are made to files)")
+    .option("-ts, --typescript", "convert TypeScript code");
 
   program
     .command("button-destructive <target>")
     .description(
       "Convert destructive buttons to primary buttons with a destructive prop"
     )
+    .description("TypeScript conversion not yet supported")
     .action((target, command) => runTransform(target, command, program));
 
   program
@@ -108,11 +116,13 @@ function Cli() {
   program
     .command("deprecate-create <target>")
     .description("Convert create to dashed fullwidth button")
+    .description("TypeScript conversion not yet supported")
     .action((target, command) => runTransform(target, command, program));
 
   program
     .command("dialog-full-screen-app-wrapper <target>")
     .description("Wrap children of DialogFullScreen in AppWrapper")
+    .description("TypeScript conversion not yet supported")
     .action((target, command) => runTransform(target, command, program));
 
   program
@@ -123,6 +133,7 @@ function Cli() {
   program
     .command("replace-flash-with-toast <target>")
     .description("Replaces deprecated Flash component with Toast component")
+    .description("TypeScript conversion not yet supported")
     .action((target, command) => runTransform(target, command, program));
 
   program
@@ -135,6 +146,7 @@ function Cli() {
     .description(
       "Replace padding prop with p prop and change values on tile component"
     )
+    .description("TypeScript conversion not yet supported")
     .action((target, command) => runTransform(target, command, program));
 
   program
@@ -160,6 +172,7 @@ Example
   named import:    npx carbon-codemod add-prop src carbon-react/lib/component propName propValue -i Component
     `
     )
+    .description("TypeScript conversion not yet supported")
     .action((target, importPath, prop, value, command) => {
       const { importName } = command;
       runTransform(target, command, program, {
@@ -253,6 +266,7 @@ Example
   named import:    npx carbon-codemod replace-prop-value src carbon-react/lib/component prop oldValue newValue -i Component
     `
     )
+    .description("TypeScript conversion not yet supported")
     .action((target, importPath, attribute, oldValue, newValue, command) => {
       const { importName } = command;
 
@@ -270,6 +284,7 @@ Example
     .description(
       "replaces deprecated collapse Pod prop with the Accordion Component"
     )
+    .description("TypeScript conversion not yet supported")
     .action((target, command) => runTransform(target, command, program));
 
   program
@@ -277,6 +292,7 @@ Example
     .description(
       "removes deprecated description Pod prop and places it's value as part of the Pod content"
     )
+    .description("TypeScript conversion not yet supported")
     .action((target, command) => runTransform(target, command, program));
 
   program.on("command:*", function () {
