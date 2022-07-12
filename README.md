@@ -12,14 +12,37 @@ npx carbon-codemod <name-of-codemod> <target>
 - [`add-prop`](./transforms/add-prop)
 - [`button-destructive`](./transforms/button-destructive)
 - [`deprecate-create`](./transforms/deprecate-create)
-- [`message-remove-classic-theme`](./transforms/message-remove-classic-theme)
-- [`rename-prop`](./transforms/rename-prop)
-- [`remove-prop`](./transforms/remove-prop)
-- [`replace-prop-value`](./transforms/replace-prop-value)
-- [`tile-update-padding-prop`](./transforms/tile-update-padding-prop)
 - [`dialog-full-screen-app-wrapper`](./transforms/dialog-full-screen-app-wrapper)
+- [`message-remove-classic-theme`](./transforms/message-remove-classic-theme)
+- [`move-experimental-components`](./transforms/move-experimental-components)
+- [`move-pod-description-to-content`](./transforms/move-pod-description-to-content)
+- [`remove-prop`](./transforms/remove-prop)
+- [`rename-prop`](./transforms/rename-prop)
+- [`replace-collapsible-pod-with-accordion`](./transforms/replace-collapsible-pod-with-accordion)
+- [`replace-flash-with-toast`](./transforms/replace-flash-with-toast)
+- [`replace-prop-value`](./transforms/replace-prop-value)
+- [`replace-row-column-with-grid`](./transforms/replace-row-column-with-grid)
+- [`tile-update-padding-prop`](./transforms/tile-update-padding-prop)
 
 Note that `<target>` is worked out relative to the current working directory.
+
+Make sure that the codemod is not being run in a folder containing a `package.json` file,
+as it may fail reporting missing dependencies.
+
+For TypeScript codebase conversion use the `--typescript` option:
+
+```
+npx carbon-codemod <name-of-codemod> <target> --typescript
+```
+
+List of codemods with TypeScript support:
+
+- [`message-remove-classic-theme`](./transforms/message-remove-classic-theme)
+- [`move-experimental-components`](./transforms/move-experimental-components)
+- [`rename-prop`](./transforms/rename-prop)
+- [`remove-prop`](./transforms/remove-prop)
+- [`replace-row-column-with-grid`](./transforms/replace-row-column-with-grid)
+
 
 ## Development
 
@@ -48,7 +71,7 @@ It's also possible to debug the tests
 
 You can use [astexplorer.net](https://astexplorer.net/) to help understand the existing structure of files. You should use the following settings:
 
-- parser: `esprima`
+- parser: `esprima` for js or `@babel/parser` for TypeScript
 - transform: `jscodeshift`
 
 ### Transformation Status
@@ -67,6 +90,7 @@ The return value of the function determines the status of the transformation:
 - `npm test`
 - It's important to test that each codemod is idempotent.
 - Use `defineTest` to write new tests, this will create a fixture test and an idempotent test.
+- A codemod should convert both javascript and TypeScript projects.
 
 ### Releasing
 

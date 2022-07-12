@@ -77,6 +77,23 @@ describe("run", () => {
     expect(execaSync.mock.calls[0][1]).toContain("--dry");
   });
 
+  describe("when the --typescript flag is set", () => {
+    it("sets the parser as tsx and supports ts extensions", () => {
+      process.argv = [
+        "/Users/guest/.nvm/versions/node/v10.16.3/bin/node",
+        "/Users/guest/.nvm/versions/node/v10.16.3/bin/carbon-codemod",
+        "button-destructive",
+        "src",
+        "--typescript",
+      ];
+
+      new Cli().run();
+
+      expect(console.log.mock.calls[0][0]).toContain("--parser=tsx");
+      expect(console.log.mock.calls[0][0]).toContain("--extensions=tsx,ts,jsx,js");
+    });
+  });
+
   describe("git", () => {
     beforeEach(() => {
       process.argv = [
@@ -165,6 +182,7 @@ describe("run", () => {
       const args = [
         "--verbose=2",
         "--ignore-pattern=**/node_modules/**",
+        "--extensions=jsx,js",
         "--transform",
         path.join(
           Cli.__transformsDir,
@@ -190,6 +208,7 @@ describe("run", () => {
       const args = [
         "--verbose=2",
         "--ignore-pattern=**/node_modules/**",
+        "--extensions=jsx,js",
         "--transform",
         path.join(
           Cli.__transformsDir,
@@ -215,6 +234,7 @@ describe("run", () => {
       const args = [
         "--verbose=2",
         "--ignore-pattern=**/node_modules/**",
+        "--extensions=jsx,js",
         "--transform",
         path.join(
           Cli.__transformsDir,
@@ -243,6 +263,7 @@ describe("run", () => {
       const args = [
         "--verbose=2",
         "--ignore-pattern=**/node_modules/**",
+        "--extensions=jsx,js",
         "--transform",
         path.join(Cli.__transformsDir, "rename-prop", "rename-prop.js"),
         path.join(process.cwd(), "src"),
@@ -269,6 +290,7 @@ describe("run", () => {
       const args = [
         "--verbose=2",
         "--ignore-pattern=**/node_modules/**",
+        "--extensions=jsx,js",
         "--transform",
         path.join(Cli.__transformsDir, "remove-prop", "remove-prop.js"),
         path.join(process.cwd(), "src"),
