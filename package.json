@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "jscodeshift": "jscodeshift"
+    "jscodeshift": "jscodeshift",
+    "prepare": "husky install"
   },
   "keywords": [
     "carbon",
@@ -24,7 +25,7 @@
     "babel-jest": "^27.0.2",
     "conventional-changelog-conventionalcommits": "^4.5.0",
     "cz-conventional-changelog": "^3.3.0",
-    "husky": "^7.0.0",
+    "husky": "^8.0.3",
     "jest": "^27.0.4",
     "lint-staged": "^11.0.0",
     "prettier": "^2.1.2",
@@ -46,12 +47,6 @@
     "*.js": [
       "prettier --write"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged && jest --bail",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
   },
   "commitlint": {
     "extends": [
