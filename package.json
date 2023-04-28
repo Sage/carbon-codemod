@@ -4,7 +4,7 @@
   "description": "carbon-codemod",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --config jest.config.js",
     "jscodeshift": "jscodeshift",
     "prepare": "husky install"
   },
@@ -16,20 +16,20 @@
   "author": "The Sage Group plc",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@babel/core": "^7.12.3",
-    "@babel/preset-env": "^7.12.1",
-    "@commitlint/cli": "^13.1.0",
-    "@commitlint/config-conventional": "^13.1.0",
-    "@semantic-release/changelog": "^5.0.1",
-    "@semantic-release/git": "^9.0.0",
-    "babel-jest": "^27.0.2",
-    "conventional-changelog-conventionalcommits": "^4.5.0",
+    "@babel/core": "^7.21.4",
+    "@babel/preset-env": "^7.21.4",
+    "@commitlint/cli": "^17.6.1",
+    "@commitlint/config-conventional": "^17.6.1",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "babel-jest": "^27.5.1",
+    "conventional-changelog-conventionalcommits": "^4.6.3",
     "cz-conventional-changelog": "^3.3.0",
     "husky": "^8.0.3",
-    "jest": "^27.0.4",
-    "lint-staged": "^11.0.0",
-    "prettier": "^2.1.2",
-    "semantic-release": "^19.0.3"
+    "jest": "^27.5.1",
+    "lint-staged": "^11.2.6",
+    "prettier": "^2.8.8",
+    "semantic-release": "^19.0.5"
   },
   "jest": {
     "testEnvironment": "node"
@@ -38,9 +38,9 @@
     "carbon-codemod": "./bin/carbon-codemod.js"
   },
   "dependencies": {
-    "chalk": "^4.1.0",
-    "commander": "^6.2.0",
-    "execa": "^5.0.0",
+    "chalk": "^4.1.2",
+    "commander": "^6.2.1",
+    "execa": "^5.1.1",
     "jscodeshift": "^0.10.0"
   },
   "lint-staged": {
