@@ -1,3 +1,10 @@
+### [1.14.2](https://github.com/Sage/carbon-codemod/compare/v1.14.1...v1.14.2) (2023-05-05)
+
+
+### Bug Fixes
+
+* address broken internal git hooks ([7ed41d6](https://github.com/Sage/carbon-codemod/commit/7ed41d6caa2c5688e7c664f4412eaa72da4eeb26)), closes [#55](https://github.com/Sage/carbon-codemod/issues/55)
+
 ### [1.14.1](https://github.com/Sage/carbon-codemod/compare/v1.14.0...v1.14.1) (2022-04-28)
 
 
